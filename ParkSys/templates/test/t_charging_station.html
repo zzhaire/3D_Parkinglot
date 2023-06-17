@@ -1,0 +1,201 @@
+{% load static %}
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>charging station</title>
+    <style>
+      .container {
+        width: 800px;
+        height: 600px;
+        margin: 0 auto;
+        position: relative;
+        border: 2px solid black; /* 添加边框 */
+        border-radius: 30px; /* 添加圆角 */
+        background-color:lightblue; /* 添加背景颜色 */
+        font-family: Arial, sans-serif;
+        color: #333;
+        padding: 20px;
+      }
+      .container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+		pointer-events: none;
+      }
+      h1 {
+        margin-top: 0;
+        text-align: center;
+      }
+      .charge-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+      .timer {
+        text-align: center;
+      }
+      .timer-display {
+        font-size: 36px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+	
+
+  .start-btn,
+  .stop-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #4CAF50;
+    transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+    cursor: pointer;
+    box-shadow: 0px 5px #3e8e41;
+  }
+
+  
+      .buttons button {
+        font-size: 24px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 10px;
+      }
+    
+      .order-section {
+        margin-top: 40px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 10px;
+        border: 3px solid #515151;
+      }
+      td:first-child {
+        font-weight: bold;
+      }
+      .charge-time {
+        font-weight: bold;
+      }
+      .cost {
+        font-weight: bold;
+        color: #f00;
+      }
+      .device-model {
+        font-weight: bold;
+      }
+      .product-selection {
+        margin-top: 20px;
+      }
+      .buttons button:focus {
+        outline: none;
+        box-shadow: 0 0 5px #5B9DD9;
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+<body>
+  <div class="container">
+    <h1>汽车充电桩</h1>
+    <div class="charge-section">
+      <div class="timer">
+        <h2>充电倒计时</h2>
+        <div class="timer-display" id="timer-display">10:00:00</div>
+
+	
+      </div>
+      <div class="buttons">
+        <button class="start-btn">开始充电</button>
+        <button class="stop-btn">停止充电</button>
+      </div>
+    </div>
+    <div class="order-section">
+      <h2>订单信息</h2>
+      <table>
+        <tr>
+          <td>充电时长：</td>
+          <td><span class="charge-time">0小时0分0秒</span></td>
+        </tr>
+        <tr>
+          <td>消费金额：</td>
+          <td><span class="cost">0元</span></td>
+        </tr>
+        <tr>
+          <td>支付方式：</td>
+          <td><span class="payment-method">微信支付</span></td>
+        </tr>
+        <tr>
+          <td>设备型号：</td>
+          <td><span class="device-model">XYZ1234</span></td>
+        </tr>
+      </table>
+      <div class="product-selection">
+        <h3>选择商品</h3>
+        <select>
+          <option>饮料</option>
+          <option>零食</option>
+          <option>充电线</option>
+        </select>
+        <button>添加到购物车</button>
+      </div>
+    </div>
+  </div>
+  <script>
+	// 选择开始充电按钮
+var startButton = document.querySelector('.start-btn');
+
+// 获取计时器元素
+var timerDisplay = document.getElementById('timer-display');
+
+// 设置倒计时初始值为10小时
+var countDownTime = 36000;
+
+// 定义计时器函数
+function startTimer() {
+  // 将秒数转换为时分秒格式
+  var hours = Math.floor(countDownTime / 3600);
+  var minutes = Math.floor((countDownTime - (hours * 3600)) / 60);
+  var seconds = countDownTime - (hours * 3600) - (minutes * 60);
+  var display = hours + ':' + ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
+  
+  // 更新计时器显示值
+  timerDisplay.textContent = display;
+
+  // 每秒减少1秒
+  countDownTime--;
+
+  // 当计时器结束时停止计时
+  if (countDownTime < 0) {
+    clearInterval(timer);
+    timerDisplay.textContent = "计时器结束";
+  }
+}
+
+// 将计时器函数每秒调用一次
+var timer = setInterval(startTimer, 1000);
+
+// 将计时器停止函数与“停止充电”按钮绑定
+var stopButton = document.querySelector('.stop-btn');
+stopButton.addEventListener('click', function() {
+  clearInterval(timer);
+});
+
+	</script>
+  
+	
+</body>
+</html>

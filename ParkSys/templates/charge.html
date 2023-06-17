@@ -1,0 +1,403 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block charge_css %}
+<style>
+    .content-box.service {
+        background: #f7f7f7;
+        padding: 57px 0 57px;
+        height: 1000px;
+    }
+
+    #charge-box {
+        width: 650px;
+        height: 550px;
+        margin: 0 auto;
+        position: relative;
+        border: 5px solid black;
+        /* 添加边框 */
+        border-radius: 10px;
+        /* 添加圆角 */
+        background-color: #7b7b7b;
+        /* 添加背景颜色 */
+        font-family: Arial, sans-serif;
+        color: rgb(0, 0, 0);
+        padding: 20px;
+        top: 200px;
+        left: 0;
+        right: 0;
+    }
+
+    #title {
+        font-size: 40px;
+        font-weight: bold;
+        color: #000000;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    #charge-button {
+        font-size: 20px;
+        background-color: #3376f3;
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        text-align: center;
+        margin: auto;
+        display: block;
+        padding: 10px 20px;
+        transition: background-color 0.2s ease;
+        /* 定义过渡效果 */
+        cursor: pointer;
+        box-shadow: 0 5px #272827;
+        position: relative;
+    }
+
+    #charge-button-1 {
+        font-size: 20px;
+        color: #3E4E4E;
+        border: none;
+        border-radius: 15px;
+        text-align: center;
+        margin: auto;
+        display: block;
+        padding: 10px 20px;
+        transition: background-color 0.2s ease;
+        /* 定义过渡效果 */
+        cursor: pointer;
+        box-shadow: 0 5px #272827;
+        position: relative;
+    }
+
+    #stop-button1 {
+        font-size: 20px;
+        background-color: #3376f3;
+        color: #fff;
+        border: none;
+        border-radius: 15px;
+        text-align: center;
+        margin: auto;
+        display: block;
+        padding: 10px 20px;
+        transition: background-color 0.2s ease;
+        /* 定义过渡效果 */
+        cursor: pointer;
+        box-shadow: 0 5px #272827;
+        position: relative;
+    }
+
+    #charge-button:active {
+        background-color: #292a2d;
+        /* 按下时的背景颜色 */
+    }
+
+    #stop-button:active {
+        background-color: #c8e4f3;
+        /* 按下时的背景颜色 */
+    }
+
+    #order-info {
+        font-size: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #000000
+    }
+
+    #countdown {
+        font-size: 25px;
+        font-weight: bold;
+        color: #1c53a5;
+        margin-bottom: 20px;
+        display: none;
+        text-align: center;
+    }
+
+    #charge-amount {
+        font-size: 20px;
+        margin-bottom: 10px;
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border: 4px solid #4896bd;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    #charge-amount label {
+        display: block;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    #charge-input {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-bottom: 20px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #charge-exit,
+    #charge-confirm {
+        font-size: 20px;
+        padding: 8px 15px;
+        background-color: #399aef;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        margin: auto;
+        display: block;
+        transition: background-color 0.2s ease;
+        /* 定义过渡效果 */
+        cursor: pointer;
+        box-shadow: 0px 3px #272827;
+        position: relative;
+    }
+
+    #charge-exit:active {
+        background-color: #61b9e8;
+        /* 按下时的背景颜色 */
+    }
+
+    #charge-confirm:active {
+        background-color: #61b9e8;
+        /* 按下时的背景颜色 */
+    }
+
+    #popup {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #popup img {
+        max-width: 80%;
+        max-height: 80%;
+        margin: auto;
+        display: block;
+    }
+</style>
+{% endblock %}
+
+{% block charge %}
+
+
+<section class="content-box service">
+{% if charge_status == 0 %} 
+    <div id="charge-box">
+        <form method='post'>
+            {% csrf_token %}
+            <div id="title">汽车充电桩</div>
+            {% if login_status == 1 and park_status == 1 %}
+            <button id="charge-button">开始充电</button>
+            {% else %} 
+            <button id="charge-button-1" disabled="disabled">未登录/未停车</button>-->
+            {% endif %}
+            <button id="stop-button" name="finish_time">停止充电</button>
+            <br>
+            <br>
+            <br>
+            <div id="order-info">
+                <p>汽车桩编号：&nbsp&nbsp&nbsp&nbsp&nbsp{{ sno }} </p>
+                <p>付款方式：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp微信/支付宝</p>
+                <p>付款金额：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp 0元 </p>
+                <p>充电时长：&nbsp&nbsp&nbsp&nbsp&nbsp0小时 </p>
+                <p>充电电量：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0度 </p>
+            </div>
+            <br>
+            <div id="countdown"></div>
+            <div id="charge-amount">
+                <label for="charge-input">收费价格为0.55元/度电，使用慢充模式，一小时可充7度电</label>
+                <label for="charge-input">请输入您想充电的金额：</label>
+                <input type="number" id="charge-input"  name="money" min="1" max="1000" value="0">
+                <input style="width: 67px;height: 34px;" id="charge-confirm" name="" type='submit' value='确定'>
+                <button id="charge-exit">退出</button>
+            </div>
+            <div id="popup" style="display: none;">
+                <img src="{% static 'images/wx.jpg' %}">
+                <img src="{% static 'images/zfb.jpg' %}">
+            </div>
+        </form>
+    </div>
+<!--    这个是充电状态后的 {#  TODO  if charge_status == 1 的 #}-->
+{% else %}
+    <div id="charge-box">
+            <div id="title">汽车充电桩</div>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" id="stop-button1" name="stopcharge">停止充电</button>
+            </form>
+            <br>
+            <br>
+            <br>
+            <div id="order-info">
+                <p>汽车桩编号：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ sno }}</p>
+                <p>付款方式：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp微信/支付宝</p> 
+                <p>付款金额：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp {{money}}元</p>
+                <p>充电时长：&nbsp&nbsp&nbsp&nbsp&nbsp{{ach}}小时</p>
+                <p>充电电量：&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{{ach}}度</p>
+                <p>剩余时间：{{ rth }}小时  {{ rtm }}分钟  {{ rts }}秒</p>
+            </div>
+            <br>
+            <div id="countdown"></div>
+            <div id="charge-amount">
+                <label for="charge-input">收费价格为0.55元/度电，使用慢充模式，一小时可充7度电</label>
+                <label for="charge-input">请输入您想充电的金额：</label>
+                <input type="number" id="charge-input" min="1" max="1000" value="0"  >
+                <button id="charge-confirm">确认</button>
+                <button id="charge-exit">退出</button>
+            </div>
+            <div id="popup" style="display: none;">
+
+                <img src="{% static 'image/wx.jpg' %}">
+                <img src="{% static 'image/zfb.jpg' %}">
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+</section>
+<script>
+    var chargeButton = document.getElementById("charge-button");
+    var stopButton = document.getElementById("stop-button");
+    var orderInfo = document.getElementById("order-info");
+    var countdown = document.getElementById("countdown");
+    var chargeAmount = document.getElementById("charge-amount");
+    var chargeInput = document.getElementById("charge-input");
+    var chargeConfirm = document.getElementById("charge-confirm");
+    var chargeExit = document.getElementById("charge-exit");
+    var number = orderInfo.getElementsByTagName("p")[0];
+    var paymentAmount = orderInfo.getElementsByTagName("p")[2];
+    var chargeTime = orderInfo.getElementsByTagName("p")[3];
+    var chargeAmounts = orderInfo.getElementsByTagName("p")[4];
+    var timerId;
+
+    var remainingTime = 0;
+    var timer;
+
+    stopButton.style.display = "none";
+
+    chargeButton.onclick = function () {
+
+        chargeAmount.style.display = "block";
+
+    }
+    chargeExit.onclick = function () {
+
+        chargeAmount.style.display = "none";
+
+    }
+
+    chargeConfirm.onclick = function () {
+        chargeButton.style.display = "none";
+        stopButton.style.display = "block";
+        var amount = chargeInput.value;
+        if (amount) {
+            //var remainingTime = {{ remain_time }};
+            window.location.href = "{% url 'homepage' %}";
+        }
+    }
+
+    stopButton.onclick = function () {
+        var time = chargeInput.value / 0.55 / 7;
+        var electricity = chargeInput.value / 0.55;
+        countdown.style.display = "none";
+        chargeButton.innerHTML = "开始充电";
+        paymentAmount.innerHTML = "您已付款" + chargeInput.value + "元";
+        chargeTime.innerHTML = "已充电时长为" + time.toFixed(1) + "小时";
+        chargeAmounts.innerHTML = "已充电电量为" + electricity.toFixed(1) + "度";
+        chargeButton.style.display = "block";
+        clearInterval(timerId);
+        remainingTime = 0;
+    }
+
+    var popup = document.getElementById('popup');
+
+    stopButton.addEventListener('click', function () {
+        alert("请付款" + chargeInput.value + "元");
+        popup.style.display = 'flex';
+    });
+
+    popup.addEventListener('click', function () {
+        popup.style.display = 'none';
+    });
+
+
+</script>
+{% endblock %}
+{% block bottom_bar %}
+<footer class="footer-area two">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="footer-box one">
+                    <div class="logo">
+                        <img src="../static/picture/logo-2.png" alt="">
+                    </div>
+                    <p class="text">停车场管理系统开发于2023年3月16日，系统完整，具有良好的图形界面和用户界面
+                        感谢你的使用
+                    </p>
+
+                    <div class="social">
+                        <a href="javaScript:;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-twitter"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="footer-box two">
+                    <h4 class="lasthead">开发团队</h4>
+                    <div class="footer-list">
+                        <ul>
+                            <li><a href="javaScript:;"> 陈宏明 焦晨元</a></li>
+                            <li><a href="javaScript:;"> 张哲源 周易</a></li>
+                            <li><a href="javaScript:;"> 钱子贤 栾佳浩</a></li>
+                            <li><a href="javaScript:;"> 严睿</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="footer-box three">
+                    <h4 class="lasthead">更多</h4>
+                    <div class="footer-list">
+                        <ul>
+                            <li><a href="{% url 'contact'%}"> 联系我们</a></li>
+                            <li><a href="{% url 'contact' %}"> 意见反馈 </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="copyright two">
+    <div class="container">
+        <div class="row">
+            <div class="col-12  wow fadeInUp text-center">
+                <p class="text">Copyright &copy; 2023.ParkSys. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

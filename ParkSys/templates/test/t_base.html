@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--====== Title ======-->
+    <title> Markpro - Digital Marketplace HTML Template </title>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!--=== Owl-Carousel ===-->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <!--===nice-select===-->
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <!--====== Magnific ======-->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!--====== Font Awesome ======-->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!--====== Main Css ======-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--====== Responsive Css ======-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/parking.css' %}">
+    <link rel="stylesheet" href="{% static 'css/charging.css' %}">
+</head>
+
+<body>
+    <!--====== 载入动画栏 ======-->
+    <div id="preloader">
+        <div class="loader-cubes">
+            <div class="loader-cube1 loader-cube"></div>
+            <div class="loader-cube2 loader-cube"></div>
+            <div class="loader-cube4 loader-cube"></div>
+            <div class="loader-cube3 loader-cube"></div>
+        </div>
+    </div>
+    <!--====== 载入动画结束 ======-->
+    
+    <!--====== 上方标题栏 Start ======-->
+    <header class="header-one sticky-header">
+        <div class="header-navigation">
+            <div class="container-fluid d-flex align-items-center justify-content-between container-1470">
+                <div class="header-left">
+                    <div class="site-logo">
+                        <a href="index.html"><img src="static/picture/logo.png" alt="Markpro"></a>
+                    </div>
+                </div>
+                <div class="header-right d-flex align-items-center justify-content-end">
+                    <div class="site-nav-menu">
+                        <ul class="primary-menu">
+                            <li>
+                                <a class="drop" href="#0">主页</a>
+                            </li>
+                            <li>
+                                <a href="about-us.html">地图</a>
+                            </li>
+                            <li>
+                                <a href="marktetplace.html">充电</a>
+                            </li>
+                            <li>
+                                <a class="drop" href="#0">联系我们</a>
+                            </li>
+                        </ul>
+                        <a href="#0" class="nav-close"><i class="fal fa-times"></i></a>
+                    </div>
+                    <div class="header-extra d-flex align-items-center">
+                        <div class="shoping-mini-cart menu-cart">
+                            <a href="#0" class="cart-icon cart-contents menu-item"><i class="fal fa-shopping-cart"></i>
+                                <span class="number cart-contents-count">2</span>
+                            </a>
+                            <div class="mini-cart">
+                                <div class="widget woocommerce widget_shopping_cart">
+                                    <div class="widget_shopping_cart_content">
+                                        <ul class="woocommerce-mini-cart cart_list product_list_widget  list-unstyled">
+                                            <li class="woocommerce-mini-cart-item mini_cart_item">
+                                                <a href="#0" class="remove remove_from_cart_button">×</a>
+                                                <a href="product-details.html">
+                                                    Navian
+                                                </a>
+                                                <span class="quantity">1 ×
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <bdi>
+                                                            <span class="woocommerce-Price-currencySymbol">$</span> 49
+                                                        </bdi>
+                                                    </span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <p class="woocommerce-mini-cart__total total">
+                                            <strong>Subtotal:</strong> <span
+                                                class="woocommerce-Price-amount amount"><bdi><span
+                                                        class="woocommerce-Price-currencySymbol">$</span>49</bdi></span>
+                                        </p>
+                                        <p class="woocommerce-mini-cart__buttons buttons">
+                                            <a href="#0" class="button wc-forward main-btn first">View cart</a>
+                                            <a href="checkout.html"
+                                                class="button checkout wc-forward main-btn">Checkout</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="offcanvas-widget d-none">
+                            <div class="offcanvas-icon">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="nav-toggler">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="navbar-btn">
+                            <a href="#0"> <i class="fas fa-user"></i>My Account</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--====== 上方标题栏结束 End ======-->
+    {% block content %}
+    {% endblock %}
+
+
+    <!--====== Footer Area START ======--> 
+    <!-- 最下面的栏 -->
+    <footer class="footer-area two">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="footer-box one">
+                        <div class="logo">
+                            <img src="static/picture/logo-2.png" alt="">
+                        </div>
+                        <p class="text">停车场管理系统开发与2023年3月16日，系统完整，具有良好的图形界面和用户界面
+                            感谢你的使用
+                        </p>
+
+                        <div class="social">
+                            <a href="#0"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#0"><i class="fab fa-twitter"></i></a>
+                            <a href="#0"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#0"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#0"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="footer-box two">
+                        <h4 class="lasthead">开发团队</h4>
+                        <div class="footer-list">
+                            <ul>
+                                <li><a href="#0"> 陈宏明 焦晨元</a></li>
+                                <li><a href="#0"> 张哲源 周易</a></li>
+                                <li><a href="#0"> 钱子贤 栾佳浩</a></li>
+                                <li><a href="#0"> 严睿</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="footer-box three">
+                        <h4 class="lasthead">更多</h4>
+                        <div class="footer-list">
+                            <ul>
+                                <li><a href="#0"> 联系我们</a></li>
+                                <li><a href="#0"> 意见反馈 </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright two">
+        <div class="container">
+            <div class="row">
+                <div class="col-12  wow fadeInUp text-center">
+                    <p class="text">Copyright &copy; 2023.Company name All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <!--====== Footer Area END ======-->
+
+    <!--====== Back to top start ======-->
+    <div class="back-to-top">
+        <a href="#0"> <i class="fas fa-arrow-up"></i> </a>
+    </div>
+    <!--====== Back to top start ======-->
+
+    <!--====== Jquery ======-->
+    <script src="../static/js/jquery-3.6.0.min.js"></script>
+    <!--====== Bootstrap ======-->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <!--=== Owl-Carousel ===-->
+    <script src="../static/js/owl.carousel.min.js"></script>
+    <!--====== Nice Select ======-->
+    <script src="../static/js/jquery.nice-select.min.js"></script>
+    <!--====== Magnific ======-->
+    <script src="../static/js/jquery.magnific-popup.min.js"></script>
+    <!--====== Wow ======-->
+    <script src="../static/js/wow.min.js"></script>
+    <!--====== Main JS ======-->
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>

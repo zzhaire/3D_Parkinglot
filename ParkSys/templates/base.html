@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--====== Title ======-->
+    <title> Markpro - Digital Marketplace HTML Template </title>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!--=== Owl-Carousel ===-->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <!--===nice-select===-->
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <!--====== Magnific ======-->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!--====== Font Awesome ======-->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!--====== Main Css ======-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--====== Responsive Css ======-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/parking.css' %}">
+    <link rel="stylesheet" href="{% static 'css/charging.css' %}">
+    <style>
+        .loginpopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .loginpopup input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .loginpopup .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .loginpopup label {
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        .loginpopup input[type="text"] {
+            width: 80%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .loginpopup button[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+    {% block map_head %}
+    {% endblock %}
+
+</head>
+{% block charge_css %}
+{% endblock %}
+{% block map_style %}
+{% endblock %}
+<body>
+<!--====== 载入动画栏 ======-->
+<div id="preloader">
+    <div class="loader-cubes">
+        <div class="loader-cube1 loader-cube"></div>
+        <div class="loader-cube2 loader-cube"></div>
+        <div class="loader-cube4 loader-cube"></div>
+        <div class="loader-cube3 loader-cube"></div>
+    </div>
+</div>
+<!--====== 载入动画结束 ======-->
+
+<!--====== 上方标题栏 Start ======-->
+<header class="header-one sticky-header">
+    <div class="header-navigation">
+        <div class="container-fluid d-flex align-items-center justify-content-between container-1470">
+            <div class="header-left">
+                <div class="site-logo">
+                    <a href="{% url 'homepage' %}"><img src="../static/picture/logo.png" alt="Markpro"></a>
+                </div>
+            </div>
+            <div class="header-right d-flex align-items-center justify-content-end">
+                <div class="site-nav-menu">
+                    <ul class="primary-menu">
+                        <li>
+                            <a href="{% url 'homepage' %}">主页</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'map' %}">地图</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'charge' %}">充电</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'contact' %}">联系我们</a>
+                        </li>
+                    </ul>
+                    <a href="#0" class="nav-close"><i class="fal fa-times"></i></a>
+                </div>
+                <div class="header-extra d-flex align-items-center">
+                    <div class="shoping-mini-cart menu-cart">
+                        <a href="javaScript:;" class="cart-icon cart-contents menu-item"><i
+                                class="fal fa-shopping-cart"></i>
+                            <span class="number cart-contents-count">u</span>
+                        </a>
+                        <div class="mini-cart">
+                            <div class="widget woocommerce widget_shopping_cart">
+                                <div class="widget_shopping_cart_content">
+                                    <ul class="woocommerce-mini-cart cart_list product_list_widget  list-unstyled">
+                                        <li class="woocommerce-mini-cart-item mini_cart_item">
+                                            <a href="#0" class="remove remove_from_cart_button">×</a>
+                                            <a href="javaScript:;">
+                                                {% if login_status %}
+                                                用户：{{ login_name }}
+                                                {% else %}
+                                                未登录
+                                                {% endif %}
+
+                                            </a>
+                                            <span class="quantity">1 ×
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <bdi>
+                                                            <span class="woocommerce-Price-currencySymbol">$</span> 49
+                                                        </bdi>
+                                                    </span>
+                                                </span>
+                                        </li>
+                                    </ul>
+                                    <p class="woocommerce-mini-cart__total total">
+                                        <!--
+                                        <a href="{% url 'charge'%}"><strong>费用结算：TODO</strong> </a>
+                                        <span class="woocommerce-Price-amount amount"><bdi>
+                                                <span class="woocommerce-Price-currencySymbol">￥</span>多少钱,没有就0</bdi></span>
+                                        -->
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="offcanvas-widget d-none">
+                        <div class="offcanvas-icon">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="nav-toggler">
+                        <span></span><span></span><span></span>
+                    </div>
+
+                    <div class="navbar-btn">
+                        {% if login_status == 0 %}
+                        <a href="{% url 'login' %}"> <i class="fas fa-user"></i>登录</a>
+                        {% else %}
+                        <a href="{% url 'logout' %}"> <i class="fas fa-user"></i>登出</a>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--====== 上方标题栏结束 End ======-->
+<!--====== 上方标题栏结束 End ======-->
+{% block index %}{% endblock %}
+{% block map %}{% endblock %}
+{% block charge %} {% endblock %}
+{% block contact %}{% endblock %}
+
+{% block bottom_bar %}{% endblock %}
+
+
+<!-- 最下面的栏 -->
+<!--====== Footer Area END ======-->
+
+
+<!--====== Back to top start ======-->
+<div class="back-to-top">
+    <a href="#0"> <i class="fas fa-arrow-up"></i> </a>
+</div>
+<!--====== Back to top start ======-->
+
+<!--====== Jquery ======-->
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<!--====== Bootstrap ======-->
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+<!--=== Owl-Carousel ===-->
+<script src="../static/js/owl.carousel.min.js"></script>
+<!--====== Nice Select ======-->
+<script src="../static/js/jquery.nice-select.min.js"></script>
+<!--====== Magnific ======-->
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+<!--====== Wow ======-->
+<script src="../static/js/wow.min.js"></script>
+<!--====== Main JS ======-->
+<script src="../static/js/main.js"></script>
+
+<script>
+    const openButton = document.getElementById('open-popup');
+    const closeButton = document.getElementById('close-popup');
+    const popup = document.getElementById('popup');
+
+    openButton.addEventListener('click', () => {
+        popup.style.display = 'block';
+    });
+
+    closeButton.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
+</script>
+
+</body>
+
+</html>

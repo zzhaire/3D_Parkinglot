@@ -1,0 +1,169 @@
+﻿{
+  "mapstyle": {
+    "clearcolor": "1,1,1",
+    "cleartransparent": "0.0"
+  },
+  "floorstyle": [
+	{
+      "floornum": "0",
+      "baseheight": 0.2,
+      "color": "235,235,235",
+      "transparent": 0
+    }
+  ],
+  "roomstyle": [
+     {
+            "typeid": "0",
+            "color": "240,240,240",
+            "transparent": "1.0",
+            "strokecolor": "240,240,240",
+            "strokewidth": "1.0"
+     },
+    {
+        "typeid": "1",
+        "color": "242,202,92",
+        "transparent": "1.0",
+        "strokecolor": "246,179,98",
+        "strokewidth": "1.0"
+     },
+        {
+        "typeid": "10",
+        "color": "0,176,111",
+        "transparent": "1.0",
+        "strokecolor": "56, 142, 142",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "11",
+        "color": "242,255,255",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "12",
+        "color": "238, 210, 238",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "13",
+        "color": "198, 226, 255",
+        "transparent": "1.0",
+        "strokecolor": "198, 226, 255",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "14",
+        "color": "225,225,225",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "15",
+        "color": "255, 218, 185",
+        "transparent": "1.0",
+        "strokecolor": "255, 218, 185",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "16",
+        "color": "212,220,222",
+        "transparent": "1.0",
+        "strokecolor": "162,181,205",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "17",
+        "color": "204,204,204",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "18",
+        "color": "239,228,190",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "19",
+        "color": "225,225,190",
+       "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "20",
+        "color": "239,228,190",
+        "transparent": "1.0",
+        "strokecolor": "239,228,190",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "21",
+        "color": "127,237,181",
+        "transparent": "1.0",
+        "strokecolor": "0,176,111",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "22",
+        "color": "240,255,235",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "23",
+        "color": "171,205,102",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "25",
+        "color": "158,209,240",
+        "transparent": "1.0",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    },
+    {
+        "typeid": "24",
+        "color": "162, 181, 205",
+        "transparent": "0.9",
+        "strokecolor": "162, 181, 205",
+        "strokewidth": "1"
+    },
+{
+        "typeid": "999",
+        "color": "255,255,255",
+        "transparent": "0.1",
+        "strokecolor": "232,232,232",
+        "strokewidth": "1"
+    }    
+  ],
+  "fontstyle": [
+    {
+            "typeid": "0",
+            "fontsize": "12.0",
+            "fontface": "Microsoft Yahei",
+            "fillcolor": "255,255,255",
+            "strokecolor": "255,255,255",
+            "strokewidth": "0",
+            "shadow": 1
+        },
+        {
+            "typeid": "1",
+            "fontsize": "12.0",
+            "fontface": "Microsoft Yahei",
+           "fillcolor": "255,255,255",
+            "strokecolor": "255,255,255",
+            "strokewidth": "0",
+            "shadow": 1
+        }
+  ]
+}

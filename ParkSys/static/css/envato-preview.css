@@ -1,0 +1,9 @@
+/*
+ * JQuery envato item preview plugin
+ *
+ * Copyright Mehbub Rashid (email: mehbub.rabu@gmail.com)
+ * https://www.github.com/mehbubrashid/jquery-envato-preview
+ *
+ */
+
+ .env-preview-block{position:absolute;display:none;z-index:100000}.env-preview-block img{margin:0;border:0;max-width:100%;height:auto;display:block}.env-preview-shadow{box-shadow:0 0 4px rgba(48,48,48,.7)}.env-preview-preloader{background:#000 url(https://www.17sucai.com/preview/776298/2021-09-07/markpro/assets/images/loader.gif) center center no-repeat;display:block;width:500px;height:200px}.env-theme-simple{background:#999;padding:5px;border:1px solid #222}.env-theme-envato{background:#333;color:#fff;padding:10px;border:1px solid #000;line-height:16px}.env-theme-envato h3{margin:15px 0 10px;padding:0;color:#fff;font-size:18px;font-weight:500;word-wrap:break-word;white-space:normal}.env-preview-image-wrapper{overflow:hidden;max-height:300px}.style-envato-info{float:left}.style-envato-price{float:right;font-size:32px;font-weight:500;line-height:42px}.style-envato-price sup{vertical-align:-4px;font-size:24px}.style-envato-author{color:#aaa;font-size:11px;margin-bottom:5px;display:block}.style-envato-category{color:#eee;font-size:13px;display:block}

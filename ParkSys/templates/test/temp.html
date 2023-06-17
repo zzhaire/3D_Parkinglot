@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block login %}
+    <div class="main">
+        <div class="main1">
+            <form class="form-4" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>请登录/注册</h1>
+                <p>
+                    <label for="login">Username or email</label>
+                    <input type="text" name="login" placeholder="请输入手机号" required>
+                </p>
+                <p>
+                    <label for="password">Password</label>
+                    <input type="text" name='plate-number' id="plate-number" placeholder="请输入车牌号/车牌识别结果" required>
+                </p>
+                <p>
+                    <input type="file" name='image-upload' id="image-upload" accept="image/*">
+                </p>
+                <p>
+                    <input style="color: white" type="submit" name="submit" value="识别图片">
+                </p>
+                <p>
+                    <input style="color: white"  type="submit" name="send0" value="登录/注册">
+                </p>
+
+            </form>
+            ​​
+        </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    // 处理图片上传和识别
+    $('[name="submit"]').on('click', functnnnion(e) {
+        e.preventDefault();
+
+        var formData = new FormData();
+        formData.append('image-upload', $('#image-upload')[0].files[0]);
+
+        $.ajax({
+            url: '/recognize/',  // 这里是你的图片识别接口
+            type: 'POST',
+            data: formData,
+            success: function(data) {
+                $('#plate-number').val(data.plate_number);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+
+    // 处理表单提交
+    $('[name="send0"]').on('click', function(e) {
+        e.preventDefault();
+
+        var formData = new FormData();
+        formData.append('login', $('[name="login"]').val());
+        formData.append('plate-number', $('[name="plate-number"]').val());
+
+        $.ajax({
+            url: '/login/',  // 这里是你的表单提交接口
+            type: 'POST',
+            data: formData,
+            success: function(data) {
+                // 在这里处理登录/注册成功后的反馈信息
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+});
+</script>
+
+
+{% endblock %}

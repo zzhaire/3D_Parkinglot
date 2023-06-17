@@ -1,0 +1,151 @@
+{
+    "version": "1.1",
+    "floor": [
+        {
+            "floorNum": 1,
+            "color": "#4c4c4c",
+            "repeatImg": "images/building/baidiban.png",
+            "alphaTransitionRadius": 5000,
+            "alphaTransitionImg": "images/alpha_circle_trans.png"
+        }
+    ],
+    "directLight": [
+        {
+            "replaceLight": "mainLight",
+            "intensity": 0.3,
+            "direction": { "x": -0.2, "y": 0.7071067811865475, "z": 0.6 }
+        }
+    ],
+    "buildingScanLight": [
+        {
+            "type": "horizon_scan",
+            "lineScanCenter": { "x": 0, "y": 0 },
+            "scanColor": "#aad5ff",
+            "scanSpeed": 150,
+            "scanExtent": [500, -500],
+            "scanLightWidth": 25
+        },
+        {
+            "type": "center_spread",
+            "lineScanCenter": { "x": 0, "y": 0 },
+            "scanColor": "#FFFFFF",
+            "maxRadius": 2500,
+            "scanSpeed": 800
+        }
+    ],
+    "roomEffect": [
+        {
+            "roomStyle": "38",
+            "color": "#6f6a76",
+            "topImg": "images/building/color.png",
+            "sideImg": "images/building/color.png",
+            "opacity": 0.4,
+            "transprentHightLight": false,
+            "openScan": false,
+            "scanLightType": ["center_spread"],
+            "colorBreath": false,
+            "roughness": 1,
+            "metalness": 0
+        },
+        {
+            "roomStyle": "21",
+            "color": "#6f6a76",
+            "topImg": "images/building/color.png",
+            "sideImg": "images/building/color.png",
+            "opacity": 0.4,
+            "transprentHightLight": false,
+            "openScan": false,
+            "scanLightType": ["center_spread"],
+            "colorBreath": false,
+            "roughness": 1,
+            "metalness": 0
+        },
+        {
+            "roomStyle": "10",
+            "color": "#6f6a76",
+            "topImg": "images/building/color.png",
+            "sideImg": "images/building/color.png",
+            "opacity": 0.4,
+            "transprentHightLight": false,
+            "openScan": false,
+            "scanLightType": ["center_spread"],
+            "colorBreath": false,
+            "roughness": 1,
+            "metalness": 0
+        }
+    ],
+    "routes": [
+        {
+            "type": "outData",
+            "height": 5,
+            "lineWidth": 4,
+            "colors": [
+                {
+                    "datatype": "usertype-1",
+                    "color": "#00ff00"
+                }
+            ],
+            "isHightLight": true,
+            "speed": 0.004
+        }
+    ],
+    "water": [
+        {
+            "roomStyle": "12",
+            "floorNum": 2,
+            "color": "#2b8bb5",
+            "lightColor": "#b2d9e5",
+            "scale": 2.0,
+            "waveFactor": 35.0,
+            "speed": 0.008,
+            "groundScaleFactor": 0.5,
+            "roughness": 0.6,
+            "metalness": 0,
+            "mirrorReflection": 0.5
+        }
+    ],
+    "skybox": {
+        "type": "box",
+        "resolution": 1024,
+        "size": 100000,
+        "offsetY": -30000,
+        "imgPaths": [
+            "images/skybox3/sky/sky-3.png",
+            "images/skybox3/sky/sky-1.png",
+            "images/skybox3/sky/sky-5.png",
+            "images/skybox3/sky/sky-6.png",
+            "images/skybox3/sky/sky-2.png",
+            "images/skybox3/sky/sky-4.png"
+        ]
+    },
+    "envTexture": {
+        "imgPaths": [
+            "images/env/hdr3/px.png",
+            "images/env/hdr3/nx.png",
+            "images/env/hdr3/py.png",
+            "images/env/hdr3/ny.png",
+            "images/env/hdr3/pz.png",
+            "images/env/hdr3/nz.png"
+        ]
+    },
+    "models": [
+        {
+            "name": "daolu.gltf",
+            "anisotropy": "max"
+        }
+    ],
+    "screenEffects": {
+        "unrealBloom": {
+            "bloomStrength": 1,
+            "bloomThreshold": 0,
+            "bloomRadius": 0
+        },
+        "outline": {
+            "color": "#ff9800",
+            "edgeWidth": 2.0,
+            "edgeSpread": 0.0,
+            "edgeThickness": 1.0,
+            "blink": true
+        }
+    }
+}

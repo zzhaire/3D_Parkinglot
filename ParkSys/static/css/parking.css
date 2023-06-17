@@ -1,0 +1,112 @@
+.map {
+    table-layout: fixed;
+    background-color: gray;
+    position :relative;
+    border: 0px;
+}
+
+.map td,tr {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.row_parking {
+    width: 40px;
+    height: 90px;
+}
+
+.col_parking {
+    width: 90px;
+    height: 45px;
+}
+.parking{
+    background-color: green;
+    border: 5px solid rgb(0, 229, 255);
+    margin: 0px;
+    transition: transform 0.2s ease-in-out;
+}
+.choose{
+    background-color: red;
+}
+
+.row_parking:hover {
+    transform: scale(1.3);
+}
+
+.col_parking:hover {
+    transform: scale(1.2);
+}
+.bar0{
+    background-color: aqua;
+    width: 50px;
+    height: 500px;
+    text-align: center;
+}
+.bar1{
+    background-color: yellow;
+    width: 45px;
+    height: 225px;
+    text-align: center;
+}
+.bar2{
+    background-color:yellow;
+    width: 45px;
+    height: 280px;
+    text-align: center;
+}
+.bar3{
+    background-color:yellow;
+    width: 350px;
+    height: 50px;
+    text-align: center;
+}
+.bar4{
+    background-color:rgb(43, 0, 255);
+    width: 370px;
+    height: 50px;
+    text-align: center;
+}
+
+.small0{
+    background-color:aqua;
+    width: 90px;
+    height: 100px;
+    text-align: center;
+}
+.small1{
+    background-color:aqua;
+    width: 100px;
+    height: 150px;
+    text-align: center;
+}
+.big{
+    background-color:rgb(99, 65, 2);
+    width: 245px;
+    height: 750px;
+    text-align: center;
+}
+.road {
+    width: 50px;
+    height: 50px;
+    margin: 0px;
+    border: 0px;
+    background-color: gray;
+}
+.with-circle {
+    position: relative;
+  }
+.show_road {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(89, 251, 2);
+    border-radius: 50%;
+    position: relative;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .map_area{
+    background-image:url('static/image/map_bg.png') ;
+  }

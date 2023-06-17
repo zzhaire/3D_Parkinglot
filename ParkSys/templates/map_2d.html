@@ -1,0 +1,2257 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!--====== Required meta tags ======-->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--====== Title ======-->
+    <title> Markpro - Digital Marketplace HTML Template </title>
+    <!--====== Bootstrap css ======-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!--=== Owl-Carousel ===-->
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <!--===nice-select===-->
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <!--====== Magnific ======-->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    <!--====== Font Awesome ======-->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <!--====== Main Css ======-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!--====== Responsive Css ======-->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/parking.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/charging.css' %}"> -->
+    <style>
+        .loginpopup {
+          display: none;
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 20px;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .loginpopup input {
+          display: block;
+          margin-bottom: 10px;
+        }
+
+        .loginpopup .close {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          cursor: pointer;
+        }
+
+        .loginpopup label {
+          display: inline-block;
+          width: 30%;
+          text-align: right;
+          margin-right: 10px;
+        }
+
+        .loginpopup input[type="text"] {
+          width: 80%;
+          padding: 5px;
+          margin-bottom: 10px;
+        }
+
+        .loginpopup button[type="submit"] {
+          padding: 5px 10px;
+          background-color: #4CAF50;
+          color: #fff;
+          border: none;
+          border-radius: 3px;
+          cursor: pointer;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+            z-index: 9999;
+            text-align: center;
+        }
+
+        .popup-title {
+            margin-top: 0;
+        }
+
+        .popup-park-button {
+            display: none;
+        }
+
+        .popup-close-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            border: none;
+            background-color: transparent;
+            font-size: 20px;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .popup-close-button:hover {
+            color: #000;
+        }
+
+        /*
+
+        {# 功能盒子样式 #}   */
+
+        #sidebar {
+            position: fixed;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 50%;
+            width: 300px;
+            background-color: #d2eaf2;
+            transition: all 0.3s ease-out;
+            overflow: hidden;
+            z-index: 9999;
+        }
+
+        #form-box {
+            margin: 20px;
+            padding: 40px;
+            left: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #sidebar.closed {
+            width: 50px;
+        }
+
+        #form-box.closed input[type="text"] {
+            width: 0;
+            padding: 0;
+        }
+
+        #sidebar-toggle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            background-color: #d2eaf2;
+            border: none;
+        }
+
+        #toggle-button {
+            font-size: 24px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+
+        input[type="text"],
+        button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="text"]:focus,
+        button:focus {
+            outline: none;
+        }
+
+        #form-box.closed input[type="text"],
+        #form-box.closed button {
+            display: none;
+        }
+
+        #find_way_in {
+            position: absolute;
+            width: 200px;
+            right: 10px;
+            top: 50%;
+        }
+
+        #find_way_out {
+            position: absolute;
+            width: 200px;
+            right: 10px;
+            top: 55%;
+        }
+    </style>
+</head>
+
+<body>
+<!--====== 勿删 ======-->
+<div id="preloader">
+    <div class="loader-cubes">
+        <div class="loader-cube1 loader-cube"></div>
+        <div class="loader-cube2 loader-cube"></div>
+        <div class="loader-cube4 loader-cube"></div>
+        <div class="loader-cube3 loader-cube"></div>
+    </div>
+</div>
+<!--====== 勿删结尾 End ======-->
+
+<!--====== 上方导航栏 ======-->
+<header class="header-one sticky-header">
+    <div class="header-navigation">
+        <div class="container-fluid d-flex align-items-center justify-content-between container-1470">
+            <div class="header-left">
+                <div class="site-logo">
+                    <a href="{% url 'map' %}"><img src="../static/picture/logo.png" alt="Markpro"></a>
+                </div>
+            </div>
+            <div class="header-right d-flex align-items-center justify-content-end">
+                <div class="site-nav-menu">
+                    <ul class="primary-menu">
+                        <li>
+                            <a href="{% url 'homepage' %}">主页</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'map' %}">地图</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'charge' %}">充电</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'contact' %}">联系我们</a>
+                        </li>
+                    </ul>
+                    <a href="#0" class="nav-close"><i class="fal fa-times"></i></a>
+                </div>
+                <div class="header-extra d-flex align-items-center">
+                    <div class="shoping-mini-cart menu-cart">
+                        <a href="#0" class="cart-icon cart-contents menu-item"><i class="fal fa-shopping-cart"></i>
+                            <span class="number cart-contents-count">2</span>
+                        </a>
+                        <div class="mini-cart">
+                            <div class="widget woocommerce widget_shopping_cart">
+                                <div class="widget_shopping_cart_content">
+                                    <ul class="woocommerce-mini-cart cart_list product_list_widget  list-unstyled">
+                                        <li class="woocommerce-mini-cart-item mini_cart_item">
+                                            <a href="#0" class="remove remove_from_cart_button">×</a>
+                                            <a href="product-details.html">
+                                                <img width="750" alt="" height="430"
+                                                     src="../static/picture/cart.png"
+                                                     class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail">Navian
+                                            </a>
+                                            <span class="quantity">1 ×
+                                                    <span class="woocommerce-Price-amount amount">
+                                                        <bdi>
+                                                            <span class="woocommerce-Price-currencySymbol">$</span> 49
+                                                        </bdi>
+                                                    </span>
+                                                </span>
+                                        </li>
+                                    </ul>
+                                    <p class="woocommerce-mini-cart__total total">
+                                        <strong>Subtotal:</strong> <span
+                                            class="woocommerce-Price-amount amount"><bdi><span
+                                            class="woocommerce-Price-currencySymbol">$</span>49</bdi></span>
+                                    </p>
+                                    <p class="woocommerce-mini-cart__buttons buttons">
+                                        <a href="#0" class="button wc-forward main-btn first">View cart</a>
+                                        <a href="checkout.html"
+                                           class="button checkout wc-forward main-btn">Checkout</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="offcanvas-widget d-none">
+                        <div class="offcanvas-icon">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="nav-toggler">
+                        <span></span><span></span><span></span>
+                    </div>
+
+                    {% if login_status == 0 %}
+                      <div class="navbar-btn">
+                          <button class="fas fa-user" id="login_open-popup"></button>Login</a>
+                      </div>
+                    {% else %}
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="navbar-btn">
+                            <button type="submit" class="fas fa-user" name="logout"></button>Logout</a>
+                        </div>
+                      </form>
+                    {% endif %}
+                    <div class="loginpopup" id="login_popup">
+                      <span class="close" id="login_close-popup">x</span>
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="input">
+                          <div class="input-label">
+                            <label for="{{ login_form.phone_no.id }}">手机号:</label>
+                            {{login_form.phone_no}}
+                          </div>
+                          <div class="input-label">
+                            <label for="{{ login_form.car_no.id }}">车牌号:</label>
+                            {{login_form.car_no}}
+                          </div>
+                          <div class="button">
+                            <button type="submit" name="login">登录</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--====== 导航栏结束 ======-->
+
+<!--====== 停车场地图预览 ======-->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="content">
+            <h2 class="breadd  wow fadeInUp">
+                停车场地图预览
+            </h2>
+            <ul class="breadcrumb-list  wow fadeInUp">
+                <li><a href="{% url 'homepage' %}">主页</a></li>
+                <li>/我要停车</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--====== 预览结束 ======-->
+<!--====== 功能盒子 ======-->
+<div id="sidebar">
+    <div id="form-box">
+        <form method="post">
+          {% csrf_token %}
+            {% if login_status == 1 %}
+              <label for="">用户状态: 已登录</label>
+            {% else %}
+              <label for="">用户状态: 未登录</label>
+            {% endif %}
+            <br>
+            {% if user_status == 1 %}
+              <label for="">停车状态: 已停车</label>
+            {% else %}
+              <label for="">停车状态: 未停车</label>
+            {% endif %}
+            <br>
+            <br>
+            <label for="plate-number">车牌号:</label>
+            <input type="text" id="plate-number" name="plate-number"><br><br>
+            <label for="phone-number">手机号:</label>
+            <input type="text" id="phone-number" name="phone-number"><br><br>
+            <button type="submit">查询</button>
+            <button type="submit" name="findpath">路径规划</button>
+        </form>
+    </div>
+
+    <div id="sidebar-toggle">
+        <button id="toggle-button">&#9776;</button>
+    </div>
+</div>
+<!--
+<button id ="find_way_in"> 路径规划(停车)</button>
+<button id ="find_way_out"> 路径规划(出车)</button>
+-->
+<!--======= 盒子结束 ======-->
+
+<!--====== 地图开始 ======-->
+<section class="map-area ">
+    <div class="container">
+        <table class="map">
+            <tr>
+                <td>#</td>
+                <td>0</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+                <td>11</td>
+                <td>12</td>
+                <td>13</td>
+                <td>14</td>
+                <td>15</td>
+                <td>16</td>
+                <td>17</td>
+                <td>18</td>
+                <td>19</td>
+                <td>20</td>
+                <td>21</td>
+                <td>22</td>
+                <td>23</td>
+            </tr>
+            <!-- 0 -->
+            <tr>
+                <td>0</td>
+                <td rowspan="2">
+                    {% if stall_status.0 == 1 and stake_status.0 == 1 %}
+                        <div class="parking row_parking choose" id="parking-001" sls='1' sks='1'>001</div>
+                        <!-- 0,1 -->
+                    {% elif stall_status.0 == 1 and stake_status.0 == 0 %}
+                        <div class="parking row_parking choose" id="parking-001" sls='1' sks='0'>001</div>
+                        <!-- 0,1 -->
+                    {% elif stall_status.0 == 0 and stake_status.0 == 1 %}
+                        <div class="parking row_parking" id="parking-001" sls='0' sks='1'>001</div><!-- 0,1 -->
+                    {% else %}
+                        <div class="parking row_parking" id="parking-001" sls='0' sks='0'>001</div><!-- 0,1 -->
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.1 == 1 and stake_status.1 == 1 %}
+                        <div class="parking row_parking choose" id="parking-002" sls='1' sks='1'>002</div>
+                        <!-- 0,1 -->
+                    {% elif stall_status.1 == 1 and stake_status.1 == 0 %}
+                        <div class="parking row_parking choose" id="parking-002" sls='1' sks='0'>002</div>
+                        <!-- 0,1 -->
+                    {% elif stall_status.1 == 0 and stake_status.1 == 1 %}
+                        <div class="parking row_parking" id="parking-002" sls='0' sks='1'>002</div><!-- 0,1 -->
+                    {% else %}
+                        <div class="parking row_parking" id="parking-002" sls='0' sks='0'>002</div><!-- 0,1 -->
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.2 == 1 and stake_status.2 == 1 %}
+                        <div class="parking row_parking choose" id="parking-003" sls='1' sks='1'>003</div>
+                        <!-- 0,1 -->
+                    {% elif stall_status.2 == 1 and stake_status.2 == 0 %}
+                        <div class="parking row_parking choose" id="parking-003" sls='1' sks='0'>003</div>
+                        <!-- 0,1 -->
+                    {% elif stall_status.2 == 0 and stake_status.2 == 1 %}
+                        <div class="parking row_parking" id="parking-003" sls='0' sks='1'>003</div><!-- 0,1 -->
+                    {% else %}
+                        <div class="parking row_parking" id="parking-003" sls='0' sks='0'>003</div><!-- 0,1 -->
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.3 == 1 and stake_status.3 == 1 %}
+                        <div class="parking row_parking choose" id="parking-004" sls='1' sks='1'>004</div>
+                    {% elif stall_status.3 == 1 and stake_status.3 == 0 %}
+                        <div class="parking row_parking choose" id="parking-004" sls='1' sks='0'>004</div>
+                    {% elif stall_status.3 == 0 and stake_status.3 == 1 %}
+                        <div class="parking row_parking" id="parking-004" sls='0' sks='1'>004</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-004" sls='0' sks='0'>004</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.4 == 1 and stake_status.4 == 1 %}
+                        <div class="parking row_parking choose" id="parking-005" sls='1' sks='1'>005</div>
+                    {% elif stall_status.4 == 1 and stake_status.4 == 0 %}
+                        <div class="parking row_parking choose" id="parking-005" sls='1' sks='0'>005</div>
+                    {% elif stall_status.4 == 0 and stake_status.4 == 1 %}
+                        <div class="parking row_parking" id="parking-005" sls='0' sks='1'>005</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-005" sls='0' sks='0'>005</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.5 == 1 and stake_status.5 == 1 %}
+                        <div class="parking row_parking choose" id="parking-006" sls='1' sks='1'>006</div>
+                    {% elif stall_status.5 == 1 and stake_status.5 == 0 %}
+                        <div class="parking row_parking choose" id="parking-006" sls='1' sks='0'>006</div>
+                    {% elif stall_status.5 == 0 and stake_status.5 == 1 %}
+                        <div class="parking row_parking" id="parking-006" sls='0' sks='1'>006</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-006" sls='0' sks='0'>006</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.6 == 1 and stake_status.6 == 1 %}
+                        <div class="parking row_parking choose" id="parking-007" sls='1' sks='1'>007</div>
+                    {% elif stall_status.6 == 1 and stake_status.6 == 0 %}
+                        <div class="parking row_parking choose" id="parking-007" sls='1' sks='0'>007</div>
+                    {% elif stall_status.6 == 0 and stake_status.6 == 1 %}
+                        <div class="parking row_parking" id="parking-007" sls='0' sks='1'>007</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-007" sls='0' sks='0'>007</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.7 == 1 and stake_status.7 == 1 %}
+                        <div class="parking row_parking choose" id="parking-008" sls='1' sks='1'>008</div>
+                    {% elif stall_status.7 == 1 and stake_status.7 == 0 %}
+                        <div class="parking row_parking choose" id="parking-008" sls='1' sks='0'>008</div>
+                    {% elif stall_status.7 == 0 and stake_status.7 == 1 %}
+                        <div class="parking row_parking" id="parking-008" sls='0' sks='1'>008</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-008" sls='0' sks='0'>008</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.8 == 1 and stake_status.8 == 1 %}
+                        <div class="parking row_parking choose" id="parking-009" sls='1' sks='1'>009</div>
+                    {% elif stall_status.8 == 1 and stake_status.8 == 0 %}
+                        <div class="parking row_parking choose" id="parking-009" sls='1' sks='0'>009</div>
+                    {% elif stall_status.8 == 0 and stake_status.8 == 1 %}
+                        <div class="parking row_parking" id="parking-009" sls='0' sks='1'>009</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-009" sls='0' sks='0'>009</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.9 == 1 and stake_status.9 == 1 %}
+                        <div class="parking row_parking choose" id="parking-010" sls='1' sks='1'>010</div>
+                    {% elif stall_status.9 == 1 and stake_status.9 == 0 %}
+                        <div class="parking row_parking choose" id="parking-010" sls='1' sks='0'>010</div>
+                    {% elif stall_status.9 == 0 and stake_status.9 == 1 %}
+                        <div class="parking row_parking" id="parking-010" sls='0' sks='1'>010</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-010" sls='0' sks='0'>010</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.10 == 1 and stake_status.10 == 1 %}
+                        <div class="parking row_parking choose" id="parking-011" sls='1' sks='1'>011</div>
+                    {% elif stall_status.10 == 1 and stake_status.10 == 0 %}
+                        <div class="parking row_parking choose" id="parking-011" sls='1' sks='0'>011</div>
+                    {% elif stall_status.10 == 0 and stake_status.10 == 1 %}
+                        <div class="parking row_parking" id="parking-011" sls='0' sks='1'>011</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-011" sls='0' sks='0'>011</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.11 == 1 and stake_status.11 == 1 %}
+                        <div class="parking row_parking choose" id="parking-012" sls='1' sks='1'>012</div>
+                    {% elif stall_status.11 == 1 and stake_status.11 == 0 %}
+                        <div class="parking row_parking choose" id="parking-012" sls='1' sks='0'>012</div>
+                    {% elif stall_status.11 == 0 and stake_status.11 == 1 %}
+                        <div class="parking row_parking" id="parking-012" sls='0' sks='1'>012</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-012" sls='0' sks='0'>012</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.12 == 1 and stake_status.12 == 1 %}
+                        <div class="parking row_parking choose" id="parking-013" sls='1' sks='1'>013</div>
+                    {% elif stall_status.12 == 1 and stake_status.12 == 0 %}
+                        <div class="parking row_parking choose" id="parking-013" sls='1' sks='0'>013</div>
+                    {% elif stall_status.12 == 0 and stake_status.12 == 1 %}
+                        <div class="parking row_parking" id="parking-013" sls='0' sks='1'>013</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-013" sls='0' sks='0'>013</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.13 == 1 and stake_status.13 == 1 %}
+                        <div class="parking row_parking choose" id="parking-014" sls='1' sks='1'>014</div>
+                    {% elif stall_status.13 == 1 and stake_status.13 == 0 %}
+                        <div class="parking row_parking choose" id="parking-014" sls='1' sks='0'>014</div>
+                    {% elif stall_status.13 == 0 and stake_status.13 == 1 %}
+                        <div class="parking row_parking" id="parking-014" sls='0' sks='1'>014</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-014" sls='0' sks='0'>014</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.14 == 1 and stake_status.14 == 1 %}
+                        <div class="parking row_parking choose" id="parking-015" sls='1' sks='1'>015</div>
+                    {% elif stall_status.14 == 1 and stake_status.14 == 0 %}
+                        <div class="parking row_parking choose" id="parking-015" sls='1' sks='0'>015</div>
+                    {% elif stall_status.14 == 0 and stake_status.14 == 1 %}
+                        <div class="parking row_parking" id="parking-015" sls='0' sks='1'>015</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-015" sls='0' sks='0'>015</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.15 == 1 and stake_status.15 == 1 %}
+                        <div class="parking row_parking choose" id="parking-016" sls='1' sks='1'>016</div>
+                    {% elif stall_status.15 == 1 and stake_status.15 == 0 %}
+                        <div class="parking row_parking choose" id="parking-016" sls='1' sks='0'>016</div>
+                    {% elif stall_status.15 == 0 and stake_status.15 == 1 %}
+                        <div class="parking row_parking" id="parking-016" sls='0' sks='1'>016</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-016" sls='0' sks='0'>016</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.16 == 1 and stake_status.16 == 1 %}
+                        <div class="parking row_parking choose" id="parking-017" sls='1' sks='1'>017</div>
+                    {% elif stall_status.16 == 1 and stake_status.16 == 0 %}
+                        <div class="parking row_parking choose" id="parking-017" sls='1' sks='0'>017</div>
+                    {% elif stall_status.16 == 0 and stake_status.16 == 1 %}
+                        <div class="parking row_parking" id="parking-017" sls='0' sks='1'>017</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-017" sls='0' sks='0'>017</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.17 == 1 and stake_status.17 == 1 %}
+                        <div class="parking row_parking choose" id="parking-018" sls='1' sks='1'>018</div>
+                    {% elif stall_status.17 == 1 and stake_status.17 == 0 %}
+                        <div class="parking row_parking choose" id="parking-018" sls='1' sks='0'>018</div>
+                    {% elif stall_status.17 == 0 and stake_status.17 == 1 %}
+                        <div class="parking row_parking" id="parking-018" sls='0' sks='1'>018</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-018" sls='0' sks='0'>018</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.18 == 1 and stake_status.18 == 1 %}
+                        <div class="parking row_parking choose" id="parking-019" sls='1' sks='1'>019</div>
+                    {% elif stall_status.18 == 1 and stake_status.18 == 0 %}
+                        <div class="parking row_parking choose" id="parking-019" sls='1' sks='0'>019</div>
+                    {% elif stall_status.18 == 0 and stake_status.18 == 1 %}
+                        <div class="parking row_parking" id="parking-019" sls='0' sks='1'>019</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-019" sls='0' sks='0'>019</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.19 == 1 and stake_status.19 == 1 %}
+                        <div class="parking row_parking choose" id="parking-020" sls='1' sks='1'>020</div>
+                    {% elif stall_status.19 == 1 and stake_status.19 == 0 %}
+                        <div class="parking row_parking choose" id="parking-020" sls='1' sks='0'>020</div>
+                    {% elif stall_status.19 == 0 and stake_status.19 == 1 %}
+                        <div class="parking row_parking" id="parking-020" sls='0' sks='1'>020</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-020" sls='0' sks='0'>020</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.20 == 1 and stake_status.20 == 1 %}
+                        <div class="parking row_parking choose" id="parking-021" sls='1' sks='1'>021</div>
+                    {% elif stall_status.20 == 1 and stake_status.20 == 0 %}
+                        <div class="parking row_parking choose" id="parking-021" sls='1' sks='0'>021</div>
+                    {% elif stall_status.20 == 0 and stake_status.20 == 1 %}
+                        <div class="parking row_parking" id="parking-021" sls='0' sks='1'>021</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-021" sls='0' sks='0'>021</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.21 == 1 and stake_status.21 == 1 %}
+                        <div class="parking row_parking choose" id="parking-022" sls='1' sks='1'>022</div>
+                    {% elif stall_status.21 == 1 and stake_status.21 == 0 %}
+                        <div class="parking row_parking choose" id="parking-022" sls='1' sks='0'>022</div>
+                    {% elif stall_status.21 == 0 and stake_status.21 == 1 %}
+                        <div class="parking row_parking" id="parking-022" sls='0' sks='1'>022</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-022" sls='0' sks='0'>022</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2" colspan="2">
+                    <div class="small0">SMALL0</div>
+                </td>
+            </tr>
+            <!-- 1 -->
+            <tr>
+                <td>1</td>
+            </tr>
+            <!-- 2 -->
+            <tr>
+                <td>2</td>
+                <td>
+                    {% if road_status.0 == 1 %}
+                        <div class="road show_road" id="road-0_2">
+                    {% else %}
+                        <div class="road" id="road-0_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.1 == 1 %}
+                        <div class="road show_road" id="road-1_2">
+                    {% else %}
+                        <div class="road" id="road-1_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.2 == 1 %}
+                        <div class="road show_road" id="road-2_2">
+                    {% else %}
+                        <div class="road" id="road-2_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.3 == 1 %}
+                        <div class="road show_road" id="road-3_2">
+                    {% else %}
+                        <div class="road" id="road-3_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.4 == 1 %}
+                        <div class="road show_road" id="road-4_2">
+                    {% else %}
+                        <div class="road" id="road-4_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.5 == 1 %}
+                        <div class="road show_road" id="road-5_2">
+                    {% else %}
+                        <div class="road" id="road-5_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.6 == 1 %}
+                        <div class="road show_road" id="road-6_2">
+                    {% else %}
+                        <div class="road" id="road-6_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.7 == 1 %}
+                        <div class="road show_road" id="road-7_2">
+                    {% else %}
+                        <div class="road" id="road-7_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.8 == 1 %}
+                        <div class="road show_road" id="road-8_2">
+                    {% else %}
+                        <div class="road" id="road-8_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.9 == 1 %}
+                        <div class="road show_road" id="road-9_2">
+                    {% else %}
+                        <div class="road" id="road-9_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.10 == 1 %}
+                        <div class="road show_road" id="road-10_2">
+                    {% else %}
+                        <div class="road" id="road-10_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.11 == 1 %}
+                        <div class="road show_road" id="road-11_2">
+                    {% else %}
+                        <div class="road" id="road-11_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.12 == 1 %}
+                        <div class="road show_road" id="road-12_2">
+                    {% else %}
+                        <div class="road" id="road-12_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.13 == 1 %}
+                        <div class="road show_road" id="road-13_2">
+                    {% else %}
+                        <div class="road" id="road-13_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.14 == 1 %}
+                        <div class="road show_road" id="road-14_2">
+                    {% else %}
+                        <div class="road" id="road-14_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.15 == 1 %}
+                        <div class="road show_road" id="road-15_2">
+                    {% else %}
+                        <div class="road" id="road-15_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.16 == 1 %}
+                        <div class="road show_road" id="road-16_2">
+                    {% else %}
+                        <div class="road" id="road-16_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.17 == 1 %}
+                        <div class="road show_road" id="road-17_2">
+                    {% else %}
+                        <div class="road" id="road-17_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.18 == 1 %}
+                        <div class="road show_road" id="road-18_2">
+                    {% else %}
+                        <div class="road" id="road-18_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.19 == 1 %}
+                        <div class="road show_road" id="road-19_2">
+                    {% else %}
+                        <div class="road" id="road-19_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.20 == 1 %}
+                        <div class="road show_road" id="road-20_2">
+                    {% else %}
+                        <div class="road" id="road-20_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.21 == 1 %}
+                        <div class="road show_road" id="road-21_2">
+                    {% else %}
+                        <div class="road" id="road-21_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.22 == 1 %}
+                        <div class="road show_road" id="road-22_2">
+                    {% else %}
+                        <div class="road" id="road-22_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.23 == 1 %}
+                        <div class="road show_road" id="road-23_2">
+                    {% else %}
+                        <div class="road" id="road-23_2">
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 3 -->
+            <tr>
+                <td>3</td>
+                <td colspan="2">
+                    {% if stall_status.22 == 1 and stake_status.22 == 1 %}
+                        <div class="parking col_parking choose" id="parking-023" sls='1' sks='1'>023</div>
+                    {% elif stall_status.22 == 1 and stake_status.22 == 0 %}
+                        <div class="parking col_parking choose" id="parking-023" sls='1' sks='0'>023</div>
+                    {% elif stall_status.22 == 0 and stake_status.22 == 1 %}
+                        <div class="parking col_parking" id="parking-023" sls='0' sks='1'>023</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-023" sls='0' sks='0'>023</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.24 == 1 %}
+                        <div class="road show_road" id="road-3_2">
+                    {% else %}
+                        <div class="road" id="road-3_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.23 == 1 and stake_status.23 == 1 %}
+                        <div class="parking col_parking choose" id="parking-024" sls='1' sks='1'>024</div>
+                    {% elif stall_status.23 == 1 and stake_status.23 == 0 %}
+                        <div class="parking col_parking choose" id="parking-024" sls='1' sks='0'>024</div>
+                    {% elif stall_status.23 == 0 and stake_status.23 == 1 %}
+                        <div class="parking col_parking" id="parking-024" sls='0' sks='1'>024</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-024" sls='0' sks='0'>024</div>
+                    {% endif %}
+                </td>
+                <td rowspan="9">
+                    <div class='bar0'>BAR0</div>
+                </td>
+                <td>
+                    {% if road_status.25 == 1 %}
+                        <div class="road show_road" id="road-3_6">
+                    {% else %}
+                        <div class="road" id="road-3_6">
+                    {% endif %}
+                </td>
+                <td colspan="5" rowspan="13">
+                    <div class="big">BIG</div>
+                </td>
+                <td>
+                    {% if road_status.26 == 1 %}
+                        <div class="road show_road" id="road-3_12">
+                    {% else %}
+                        <div class="road" id="road-3_12">
+                    {% endif %}
+                </td>
+                <td rowspan="4">
+                    <div class='bar1'>BAR1</div>
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.24 == 1 and stake_status.24 == 1 %}
+                        <div class="parking row_parking choose" id="parking-025" sls='1' sks='1'>025</div>
+                    {% elif stall_status.24 == 1 and stake_status.24 == 0 %}
+                        <div class="parking row_parking choose" id="parking-025" sls='1' sks='0'>025</div>
+                    {% elif stall_status.24 == 0 and stake_status.24 == 1 %}
+                        <div class="parking row_parking" id="parking-025" sls='0' sks='1'>025</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-025" sls='0' sks='0'>025</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.25 == 1 and stake_status.25 == 1 %}
+                        <div class="parking row_parking choose" id="parking-026" sls='1' sks='1'>026</div>
+                    {% elif stall_status.25 == 1 and stake_status.25 == 0 %}
+                        <div class="parking row_parking choose" id="parking-026" sls='1' sks='0'>026</div>
+                    {% elif stall_status.25 == 0 and stake_status.25 == 1 %}
+                        <div class="parking row_parking" id="parking-026" sls='0' sks='1'>026</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-026" sls='0' sks='0'>026</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.26 == 1 and stake_status.26 == 1 %}
+                        <div class="parking row_parking choose" id="parking-027" sls='1' sks='1'>027</div>
+                    {% elif stall_status.26 == 1 and stake_status.26 == 0 %}
+                        <div class="parking row_parking choose" id="parking-027" sls='1' sks='0'>027</div>
+                    {% elif stall_status.26 == 0 and stake_status.26 == 1 %}
+                        <div class="parking row_parking" id="parking-027" sls='0' sks='1'>027</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-027" sls='0' sks='0'>027</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.27 == 1 and stake_status.27 == 1 %}
+                        <div class="parking row_parking choose" id="parking-028" sls='1' sks='1'>028</div>
+                    {% elif stall_status.27 == 1 and stake_status.27 == 0 %}
+                        <div class="parking row_parking choose" id="parking-028" sls='1' sks='0'>028</div>
+                    {% elif stall_status.27 == 0 and stake_status.27 == 1 %}
+                        <div class="parking row_parking" id="parking-028" sls='0' sks='1'>028</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-028" sls='0' sks='0'>028</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.28 == 1 and stake_status.28 == 1 %}
+                        <div class="parking row_parking choose" id="parking-029" sls='1' sks='1'>029</div>
+                    {% elif stall_status.28 == 1 and stake_status.28 == 0 %}
+                        <div class="parking row_parking choose" id="parking-029" sls='1' sks='0'>029</div>
+                    {% elif stall_status.28 == 0 and stake_status.28 == 1 %}
+                        <div class="parking row_parking" id="parking-029" sls='0' sks='1'>029</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-029" sls='0' sks='0'>029</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.29 == 1 and stake_status.29 == 1 %}
+                        <div class="parking row_parking choose" id="parking-030" sls='1' sks='1'>030</div>
+                    {% elif stall_status.29 == 1 and stake_status.29 == 0 %}
+                        <div class="parking row_parking choose" id="parking-030" sls='1' sks='0'>030</div>
+                    {% elif stall_status.29 == 0 and stake_status.29 == 1 %}
+                        <div class="parking row_parking" id="parking-030" sls='0' sks='1'>030</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-030" sls='0' sks='0'>030</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.30 == 1 and stake_status.30 == 1 %}
+                        <div class="parking row_parking choose" id="parking-031" sls='1' sks='1'>031</div>
+                    {% elif stall_status.30 == 1 and stake_status.30 == 0 %}
+                        <div class="parking row_parking choose" id="parking-031" sls='1' sks='0'>031</div>
+                    {% elif stall_status.30 == 0 and stake_status.30 == 1 %}
+                        <div class="parking row_parking" id="parking-031" sls='0' sks='1'>031</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-031" sls='0' sks='0'>031</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.27 == 1 %}
+                        <div class="road show_road" id="road-3_21">
+                    {% else %}
+                        <div class="road" id="road-3_21">
+                    {% endif %}
+                </td>
+                <td colspan="2" rowspan="3">
+                    <div class="small1">SMALL1</div>
+                </td>
+            </tr>
+            <!-- 4 -->
+            <tr>
+                <td>4</td>
+                <td colspan="2">
+                    {% if stall_status.31 == 1 and stake_status.31 == 1 %}
+                        <div class="parking col_parking choose" id="parking-032" sls='1' sks='1'>032</div>
+                    {% elif stall_status.31 == 1 and stake_status.31 == 0 %}
+                        <div class="parking col_parking choose" id="parking-032" sls='1' sks='0'>032</div>
+                    {% elif stall_status.31 == 0 and stake_status.31 == 1 %}
+                        <div class="parking col_parking" id="parking-032" sls='0' sks='1'>032</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-032" sls='0' sks='0'>032</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.28 == 1 %}
+                        <div class="road show_road" id="road-4_2">
+                    {% else %}
+                        <div class="road" id="road-4_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.32 == 1 and stake_status.32 == 1 %}
+                        <div class="parking col_parking choose" id="parking-033" sls='1' sks='1'>033</div>
+                    {% elif stall_status.32 == 1 and stake_status.32 == 0 %}
+                        <div class="parking col_parking choose" id="parking-033" sls='1' sks='0'>033</div>
+                    {% elif stall_status.32 == 0 and stake_status.32 == 1 %}
+                        <div class="parking col_parking" id="parking-033" sls='0' sks='1'>033</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-033" sls='0' sks='0'>033</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.29 == 1 %}
+                        <div class="road show_road" id="road-4_6">
+                    {% else %}
+                        <div class="road" id="road-4_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.30 == 1 %}
+                        <div class="road show_road" id="road-4_12">
+                    {% else %}
+                        <div class="road" id="road-4_12">
+                    {% endif %}
+                <td>
+                    {% if road_status.31 == 1 %}
+                        <div class="road show_road" id="road-4_21">
+                    {% else %}
+                        <div class="road" id="road-4_21">
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 5 -->
+            <tr>
+                <td>5</td>
+                <td colspan="2">
+                    {% if stall_status.33 == 1 and stake_status.33 == 1 %}
+                        <div class="parking col_parking choose" id="parking-034" sls='1' sks='1'>034</div>
+                    {% elif stall_status.33 == 1 and stake_status.33 == 0 %}
+                        <div class="parking col_parking choose" id="parking-034" sls='1' sks='0'>034</div>
+                    {% elif stall_status.33 == 0 and stake_status.33 == 1 %}
+                        <div class="parking col_parking" id="parking-034" sls='0' sks='1'>034</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-034" sls='0' sks='0'>034</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.32 == 1 %}
+                        <div class="road show_road" id="road-5_2">
+                    {% else %}
+                        <div class="road" id="road-5_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.34 == 1 and stake_status.34 == 1 %}
+                        <div class="parking col_parking choose" id="parking-035" sls='1' sks='1'>035</div>
+                    {% elif stall_status.34 == 1 and stake_status.34 == 0 %}
+                        <div class="parking col_parking choose" id="parking-035" sls='1' sks='0'>035</div>
+                    {% elif stall_status.34 == 0 and stake_status.34 == 1 %}
+                        <div class="parking col_parking" id="parking-035" sls='0' sks='1'>035</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-035" sls='0' sks='0'>035</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.33 == 1 %}
+                        <div class="road show_road" id="road-5_6">
+                    {% else %}
+                        <div class="road" id="road-5_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.34 == 1 %}
+                        <div class="road show_road" id="road-5_12">
+                    {% else %}
+                        <div class="road" id="road-5_12">
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.37 == 1 and stake_status.37 == 1 %}
+                        <div class="parking row_parking choose" id="parking-038" sls='1' sks='1'>038</div>
+                    {% elif stall_status.37 == 1 and stake_status.37 == 0 %}
+                        <div class="parking row_parking choose" id="parking-038" sls='1' sks='0'>038</div>
+                    {% elif stall_status.37 == 0 and stake_status.37 == 1 %}
+                        <div class="parking row_parking" id="parking-038" sls='0' sks='1'>038</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-038" sls='0' sks='0'>038</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.38 == 1 and stake_status.38 == 1 %}
+                        <div class="parking row_parking choose" id="parking-039" sls='1' sks='1'>039</div>
+                    {% elif stall_status.38 == 1 and stake_status.38 == 0 %}
+                        <div class="parking row_parking choose" id="parking-039" sls='1' sks='0'>039</div>
+                    {% elif stall_status.38 == 0 and stake_status.38 == 1 %}
+                        <div class="parking row_parking" id="parking-039" sls='0' sks='1'>039</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-039" sls='0' sks='0'>039</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.39 == 1 and stake_status.39 == 1 %}
+                        <div class="parking row_parking choose" id="parking-040" sls='1' sks='1'>040</div>
+                    {% elif stall_status.39 == 1 and stake_status.39 == 0 %}
+                        <div class="parking row_parking choose" id="parking-040" sls='1' sks='0'>040</div>
+                    {% elif stall_status.39 == 0 and stake_status.39 == 1 %}
+                        <div class="parking row_parking" id="parking-040" sls='0' sks='1'>040</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-040" sls='0' sks='0'>040</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.40 == 1 and stake_status.40 == 1 %}
+                        <div class="parking row_parking choose" id="parking-041" sls='1' sks='1'>041</div>
+                    {% elif stall_status.40 == 1 and stake_status.40 == 0 %}
+                        <div class="parking row_parking choose" id="parking-041" sls='1' sks='0'>041</div>
+                    {% elif stall_status.40 == 0 and stake_status.40 == 1 %}
+                        <div class="parking row_parking" id="parking-041" sls='0' sks='1'>041</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-041" sls='0' sks='0'>041</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.41 == 1 and stake_status.41 == 1 %}
+                        <div class="parking row_parking choose" id="parking-042" sls='1' sks='1'>042</div>
+                    {% elif stall_status.41 == 1 and stake_status.41 == 0 %}
+                        <div class="parking row_parking choose" id="parking-042" sls='1' sks='0'>042</div>
+                    {% elif stall_status.41 == 0 and stake_status.41 == 1 %}
+                        <div class="parking row_parking" id="parking-042" sls='0' sks='1'>042</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-042" sls='0' sks='0'>042</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.42 == 1 and stake_status.42 == 1 %}
+                        <div class="parking row_parking choose" id="parking-043" sls='1' sks='1'>043</div>
+                    {% elif stall_status.42 == 1 and stake_status.42 == 0 %}
+                        <div class="parking row_parking choose" id="parking-043" sls='1' sks='0'>043</div>
+                    {% elif stall_status.42 == 0 and stake_status.42 == 1 %}
+                        <div class="parking row_parking" id="parking-043" sls='0' sks='1'>043</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-043" sls='0' sks='0'>043</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.43 == 1 and stake_status.43 == 1 %}
+                        <div class="parking row_parking choose" id="parking-044" sls='1' sks='1'>044</div>
+                    {% elif stall_status.43 == 1 and stake_status.43 == 0 %}
+                        <div class="parking row_parking choose" id="parking-044" sls='1' sks='0'>044</div>
+                    {% elif stall_status.43 == 0 and stake_status.43 == 1 %}
+                        <div class="parking row_parking" id="parking-044" sls='0' sks='1'>044</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-044" sls='0' sks='0'>044</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.35 == 1 %}
+                        <div class="road show_road" id="road-5_21">
+                    {% else %}
+                        <div class="road" id="road-5_21">
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 6 -->
+            <tr>
+                <td>6</td>
+                <td colspan="2">
+                    {% if stall_status.35 == 1 and stake_status.35 == 1 %}
+                        <div class="parking col_parking choose" id="parking-036" sls='1' sks='1'>036</div>
+                    {% elif stall_status.35 == 1 and stake_status.35 == 0 %}
+                        <div class="parking col_parking choose" id="parking-036" sls='1' sks='0'>036</div>
+                    {% elif stall_status.35 == 0 and stake_status.35 == 1 %}
+                        <div class="parking col_parking" id="parking-036" sls='0' sks='1'>036</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-036" sls='0' sks='0'>036</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.36 == 1 %}
+                        <div class="road show_road" id="road-6_2">
+                    {% else %}
+                        <div class="road" id="road-6_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.36 == 1 and stake_status.36 == 1 %}
+                        <div class="parking col_parking choose" id="parking-037" sls='1' sks='1'>037</div>
+                    {% elif stall_status.36 == 1 and stake_status.36 == 0 %}
+                        <div class="parking col_parking choose" id="parking-037" sls='1' sks='0'>037</div>
+                    {% elif stall_status.36 == 0 and stake_status.36 == 1 %}
+                        <div class="parking col_parking" id="parking-037" sls='0' sks='1'>037</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-037" sls='0' sks='0'>037</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.37 == 1 %}
+                        <div class="road show_road" id="road-6_6">
+                    {% else %}
+                        <div class="road" id="road-6_6">
+                    {% endif %}
+                </td>
+                <td>{% if road_status.38 == 1 %}
+                    <div class="road show_road" id="road-6_12">
+                {% else %}
+                    <div class="road" id="road-6_12">
+                {% endif %}
+                </td>
+                <td>
+                    {% if road_status.39 == 1 %}
+                        <div class="road show_road" id="road-6_21">
+                    {% else %}
+                        <div class="road" id="road-6_21">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.44 == 1 and stake_status.44 == 1 %}
+                        <div class="parking col_parking choose" id="parking-045" sls='1' sks='1'>045</div>
+                    {% elif stall_status.44 == 1 and stake_status.44 == 0 %}
+                        <div class="parking col_parking choose" id="parking-045" sls='1' sks='0'>045</div>
+                    {% elif stall_status.44 == 0 and stake_status.44 == 1 %}
+                        <div class="parking col_parking" id="parking-045" sls='0' sks='1'>045</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-045" sls='0' sks='0'>045</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 7 -->
+            <tr>
+                <td>7</td>
+                <td colspan="2">
+                    {% if stall_status.45 == 1 and stake_status.45 == 1 %}
+                        <div class="parking col_parking choose" id="parking-046" sls='1' sks='1'>046</div>
+                    {% elif stall_status.45 == 1 and stake_status.45 == 0 %}
+                        <div class="parking col_parking choose" id="parking-046" sls='1' sks='0'>046</div>
+                    {% elif stall_status.45 == 0 and stake_status.45 == 1 %}
+                        <div class="parking col_parking" id="parking-046" sls='0' sks='1'>046</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-046" sls='0' sks='0'>046</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.40 == 1 %}
+                        <div class="road show_road" id="road-7_2">
+                    {% else %}
+                        <div class="road" id="road-7_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.46 == 1 and stake_status.46 == 1 %}
+                        <div class="parking col_parking choose" id="parking-047" sls='1' sks='1'>047</div>
+                    {% elif stall_status.46 == 1 and stake_status.46 == 0 %}
+                        <div class="parking col_parking choose" id="parking-047" sls='1' sks='0'>047</div>
+                    {% elif stall_status.46 == 0 and stake_status.46 == 1 %}
+                        <div class="parking col_parking" id="parking-047" sls='0' sks='1'>047</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-047" sls='0' sks='0'>047</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.41 == 1 %}
+                        <div class="road show_road" id="road-7_6">
+                    {% else %}
+                        <div class="road" id="road-7_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.42 == 1 %}
+                        <div class="road show_road" id="road-7_12">
+                    {% else %}
+                        <div class="road" id="road-7_12">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.43 == 1 %}
+                        <div class="road show_road" id="road-7_13">
+                    {% else %}
+                        <div class="road" id="road-7_13">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.44 == 1 %}
+                        <div class="road show_road" id="road-7_14">
+                    {% else %}
+                        <div class="road" id="road-7_14">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.45 == 1 %}
+                        <div class="road show_road" id="road-7_15">
+                    {% else %}
+                        <div class="road" id="road-7_15">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.46 == 1 %}
+                        <div class="road show_road" id="road-7_16">
+                    {% else %}
+                        <div class="road" id="road-7_16">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.47 == 1 %}
+                        <div class="road show_road" id="road-7_17">
+                    {% else %}
+                        <div class="road" id="road-7_17">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.48 == 1 %}
+                        <div class="road show_road" id="road-7_18">
+                    {% else %}
+                        <div class="road" id="road-7_18">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.49 == 1 %}
+                        <div class="road show_road" id="road-7_19">
+                    {% else %}
+                        <div class="road" id="road-7_19">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.50 == 1 %}
+                        <div class="road show_road" id="road-7_20">
+                    {% else %}
+                        <div class="road" id="road-7_20">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.51 == 1 %}
+                        <div class="road show_road" id="road-7_21">
+                    {% else %}
+                        <div class="road" id="road-7_21">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.47 == 1 and stake_status.47 == 1 %}
+                        <div class="parking col_parking choose" id="parking-048" sls='1' sks='1'>048</div>
+                    {% elif stall_status.47 == 1 and stake_status.47 == 0 %}
+                        <div class="parking col_parking choose" id="parking-048" sls='1' sks='0'>048</div>
+                    {% elif stall_status.47 == 0 and stake_status.47 == 1 %}
+                        <div class="parking col_parking" id="parking-048" sls='0' sks='1'>048</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-048" sls='0' sks='0'>048</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 8 -->
+            <tr>
+                <td>8</td>
+                <td colspan="2">
+                    {% if stall_status.48 == 1 and stake_status.48 == 1 %}
+                        <div class="parking col_parking choose" id="parking-049" sls='1' sks='1'>049</div>
+                    {% elif stall_status.48 == 1 and stake_status.48 == 0 %}
+                        <div class="parking col_parking choose" id="parking-049" sls='1' sks='0'>049</div>
+                    {% elif stall_status.48 == 0 and stake_status.48 == 1 %}
+                        <div class="parking col_parking" id="parking-049" sls='0' sks='1'>049</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-049" sls='0' sks='0'>049</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.52 == 1 %}
+                        <div class="road show_road" id="road-8_2">
+                    {% else %}
+                        <div class="road" id="road-8_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.49 == 1 and stake_status.49 == 1 %}
+                        <div class="parking col_parking choose" id="parking-050" sls='1' sks='1'>050</div>
+                    {% elif stall_status.49 == 1 and stake_status.49 == 0 %}
+                        <div class="parking col_parking choose" id="parking-050" sls='1' sks='0'>050</div>
+                    {% elif stall_status.49 == 0 and stake_status.49 == 1 %}
+                        <div class="parking col_parking" id="parking-050" sls='0' sks='1'>050</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-050" sls='0' sks='0'>050</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.53 == 1 %}
+                        <div class="road show_road" id="road-8_6">
+                    {% else %}
+                        <div class="road" id="road-8_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.54 == 1 %}
+                        <div class="road show_road" id="road-8_12">
+                    {% else %}
+                        <div class="road" id="road-8_12">
+                    {% endif %}
+                </td>
+                <td rowspan="5">
+                    <div class='bar2'>BAR2</div>
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.50 == 1 and stake_status.50 == 1 %}
+                        <div class="parking row_parking choose" id="parking-051" sls='1' sks='1'>051</div>
+                    {% elif stall_status.50 == 1 and stake_status.50 == 0 %}
+                        <div class="parking row_parking choose" id="parking-051" sls='1' sks='0'>051</div>
+                    {% elif stall_status.50 == 0 and stake_status.50 == 1 %}
+                        <div class="parking row_parking" id="parking-051" sls='0' sks='1'>051</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-051" sls='0' sks='0'>051</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.51 == 1 and stake_status.51 == 1 %}
+                        <div class="parking row_parking choose" id="parking-052" sls='1' sks='1'>052</div>
+                    {% elif stall_status.51 == 1 and stake_status.51 == 0 %}
+                        <div class="parking row_parking choose" id="parking-052" sls='1' sks='0'>052</div>
+                    {% elif stall_status.51 == 0 and stake_status.51 == 1 %}
+                        <div class="parking row_parking" id="parking-052" sls='0' sks='1'>052</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-052" sls='0' sks='0'>052</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.52 == 1 and stake_status.52 == 1 %}
+                        <div class="parking row_parking choose" id="parking-053" sls='1' sks='1'>053</div>
+                    {% elif stall_status.52 == 1 and stake_status.52 == 0 %}
+                        <div class="parking row_parking choose" id="parking-053" sls='1' sks='0'>053</div>
+                    {% elif stall_status.52 == 0 and stake_status.52 == 1 %}
+                        <div class="parking row_parking" id="parking-053" sls='0' sks='1'>053</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-053" sls='0' sks='0'>053</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.53 == 1 and stake_status.53 == 1 %}
+                        <div class="parking row_parking choose" id="parking-054" sls='1' sks='1'>054</div>
+                    {% elif stall_status.53 == 1 and stake_status.53 == 0 %}
+                        <div class="parking row_parking choose" id="parking-054" sls='1' sks='0'>054</div>
+                    {% elif stall_status.53 == 0 and stake_status.53 == 1 %}
+                        <div class="parking row_parking" id="parking-054" sls='0' sks='1'>054</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-054" sls='0' sks='0'>054</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.54 == 1 and stake_status.54 == 1 %}
+                        <div class="parking row_parking choose" id="parking-055" sls='1' sks='1'>055</div>
+                    {% elif stall_status.54 == 1 and stake_status.54 == 0 %}
+                        <div class="parking row_parking choose" id="parking-055" sls='1' sks='0'>055</div>
+                    {% elif stall_status.54 == 0 and stake_status.54 == 1 %}
+                        <div class="parking row_parking" id="parking-055" sls='0' sks='1'>055</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-055" sls='0' sks='0'>055</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.55 == 1 and stake_status.55 == 1 %}
+                        <div class="parking row_parking choose" id="parking-056" sls='1' sks='1'>056</div>
+                    {% elif stall_status.55 == 1 and stake_status.55 == 0 %}
+                        <div class="parking row_parking choose" id="parking-056" sls='1' sks='0'>056</div>
+                    {% elif stall_status.55 == 0 and stake_status.55 == 1 %}
+                        <div class="parking row_parking" id="parking-056" sls='0' sks='1'>056</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-056" sls='0' sks='0'>056</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.56 == 1 and stake_status.56 == 1 %}
+                        <div class="parking row_parking choose" id="parking-057" sls='1' sks='1'>057</div>
+                    {% elif stall_status.56 == 1 and stake_status.56 == 0 %}
+                        <div class="parking row_parking choose" id="parking-057" sls='1' sks='0'>057</div>
+                    {% elif stall_status.56 == 0 and stake_status.56 == 1 %}
+                        <div class="parking row_parking" id="parking-057" sls='0' sks='1'>057</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-057" sls='0' sks='0'>057</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.55 == 1 %}
+                        <div class="road show_road" id="road-8_21">
+                    {% else %}
+                        <div class="road" id="road-8_21">
+                    {% endif %}
+                    <div class="road">
+                </td>
+                <td colspan="2">
+                    {% if stall_status.57 == 1 and stake_status.57 == 1 %}
+                        <div class="parking col_parking choose" id="parking-058" sls='1' sks='1'>058</div>
+                    {% elif stall_status.57 == 1 and stake_status.57 == 0 %}
+                        <div class="parking col_parking choose" id="parking-058" sls='1' sks='0'>058</div>
+                    {% elif stall_status.57 == 0 and stake_status.57 == 1 %}
+                        <div class="parking col_parking" id="parking-058" sls='0' sks='1'>058</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-058" sls='0' sks='0'>058</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 9 -->
+            <tr>
+                <td>9</td>
+                <td colspan="2">
+                    {% if stall_status.58 == 1 and stake_status.58 == 1 %}
+                        <div class="parking col_parking choose" id="parking-059" sls='1' sks='1'>059</div>
+                    {% elif stall_status.58 == 1 and stake_status.58 == 0 %}
+                        <div class="parking col_parking choose" id="parking-059" sls='1' sks='0'>059</div>
+                    {% elif stall_status.58 == 0 and stake_status.58 == 1 %}
+                        <div class="parking col_parking" id="parking-059" sls='0' sks='1'>059</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-059" sls='0' sks='0'>059</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.56 == 1 %}
+                        <div class="road show_road" id="road-9_2">
+                    {% else %}
+                        <div class="road" id="road-9_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.59 == 1 and stake_status.59 == 1 %}
+                        <div class="parking col_parking choose" id="parking-060" sls='1' sks='1'>060</div>
+                    {% elif stall_status.59 == 1 and stake_status.59 == 0 %}
+                        <div class="parking col_parking choose" id="parking-060" sls='1' sks='0'>060</div>
+                    {% elif stall_status.59 == 0 and stake_status.59 == 1 %}
+                        <div class="parking col_parking" id="parking-060" sls='0' sks='1'>060</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-060" sls='0' sks='0'>060</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.57 == 1 %}
+                        <div class="road show_road" id="road-9_6">
+                    {% else %}
+                        <div class="road" id="road-9_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.58 == 1 %}
+                        <div class="road show_road" id="road-9_12">
+                    {% else %}
+                        <div class="road" id="road-9_12">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.59 == 1 %}
+                        <div class="road show_road" id="road-9_21">
+                    {% else %}
+                        <div class="road" id="road-9_21">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.60 == 1 and stake_status.60 == 1 %}
+                        <div class="parking col_parking choose" id="parking-061" sls='1' sks='1'>061</div>
+                    {% elif stall_status.60 == 1 and stake_status.60 == 0 %}
+                        <div class="parking col_parking choose" id="parking-061" sls='1' sks='0'>061</div>
+                    {% elif stall_status.60 == 0 and stake_status.60 == 1 %}
+                        <div class="parking col_parking" id="parking-061" sls='0' sks='1'>061</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-061" sls='0' sks='0'>061</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 10 -->
+            <tr>
+                <td>10</td>
+                <td colspan="2">
+                    {% if stall_status.61 == 1 and stake_status.61 == 1 %}
+                        <div class="parking col_parking choose" id="parking-062" sls='1' sks='1'>062</div>
+                    {% elif stall_status.61 == 1 and stake_status.61 == 0 %}
+                        <div class="parking col_parking choose" id="parking-062" sls='1' sks='0'>062</div>
+                    {% elif stall_status.61 == 0 and stake_status.61 == 1 %}
+                        <div class="parking col_parking" id="parking-062" sls='0' sks='1'>062</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-062" sls='0' sks='0'>062</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.60 == 1 %}
+                        <div class="road show_road" id="road-10_2">
+                    {% else %}
+                        <div class="road" id="road-10_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.62 == 1 and stake_status.62 == 1 %}
+                        <div class="parking col_parking choose" id="parking-063" sls='1' sks='1'>063</div>
+                    {% elif stall_status.62 == 1 and stake_status.62 == 0 %}
+                        <div class="parking col_parking choose" id="parking-063" sls='1' sks='0'>063</div>
+                    {% elif stall_status.62 == 0 and stake_status.62 == 1 %}
+                        <div class="parking col_parking" id="parking-063" sls='0' sks='1'>063</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-063" sls='0' sks='0'>063</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.61 == 1 %}
+                        <div class="road show_road" id="road-10_6">
+                    {% else %}
+                        <div class="road" id="road-10_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.62 == 1 %}
+                        <div class="road show_road" id="road-10_12">
+                    {% else %}
+                        <div class="road" id="road-10_12">
+                    {% endif %}
+                </td>
+                <td colspan="7">
+                    <div class='bar3'>BAR3</div>
+                </td>
+                <td>
+                    {% if road_status.63 == 1 %}
+                        <div class="road show_road" id="road-10_21">
+                    {% else %}
+                        <div class="road" id="road-10_21">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.63 == 1 and stake_status.63 == 1 %}
+                        <div class="parking col_parking choose" id="parking-064" sls='1' sks='1'>064</div>
+                    {% elif stall_status.63 == 1 and stake_status.63 == 0 %}
+                        <div class="parking col_parking choose" id="parking-064" sls='1' sks='0'>064</div>
+                    {% elif stall_status.63 == 0 and stake_status.63 == 1 %}
+                        <div class="parking col_parking" id="parking-064" sls='0' sks='1'>064</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-064" sls='0' sks='0'>064</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 11 -->
+            <tr>
+                <td>11</td>
+                <td colspan="2">
+                    {% if stall_status.64 == 1 and stake_status.64 == 1 %}
+                        <div class="parking col_parking choose" id="parking-065" sls='1' sks='1'>065</div>
+                    {% elif stall_status.64 == 1 and stake_status.64 == 0 %}
+                        <div class="parking col_parking choose" id="parking-065" sls='1' sks='0'>065</div>
+                    {% elif stall_status.64 == 0 and stake_status.64 == 1 %}
+                        <div class="parking col_parking" id="parking-065" sls='0' sks='1'>065</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-065" sls='0' sks='0'>065</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.64 == 1 %}
+                        <div class="road show_road" id="road-11_2">
+                    {% else %}
+                        <div class="road" id="road-11_2">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.65 == 1 and stake_status.65 == 1 %}
+                        <div class="parking col_parking choose" id="parking-066" sls='1' sks='1'>066</div>
+                    {% elif stall_status.65 == 1 and stake_status.65 == 0 %}
+                        <div class="parking col_parking choose" id="parking-066" sls='1' sks='0'>066</div>
+                    {% elif stall_status.65 == 0 and stake_status.65 == 1 %}
+                        <div class="parking col_parking" id="parking-066" sls='0' sks='1'>066</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-066" sls='0' sks='0'>066</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.65 == 1 %}
+                        <div class="road show_road" id="road-11_6">
+                    {% else %}
+                        <div class="road" id="road-11_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.66 == 1 %}
+                        <div class="road show_road" id="road-11_12">
+                    {% else %}
+                        <div class="road" id="road-11_12">
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.68 == 1 and stake_status.68 == 1 %}
+                        <div class="parking row_parking choose" id="parking-069" sls='1' sks='1'>069</div>
+                    {% elif stall_status.68 == 1 and stake_status.68 == 0 %}
+                        <div class="parking row_parking choose" id="parking-069" sls='1' sks='0'>069</div>
+                    {% elif stall_status.68 == 0 and stake_status.68 == 1 %}
+                        <div class="parking row_parking" id="parking-069" sls='0' sks='1'>069</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-069" sls='0' sks='0'>069</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.69 == 1 and stake_status.69 == 1 %}
+                        <div class="parking row_parking choose" id="parking-070" sls='1' sks='1'>070</div>
+                    {% elif stall_status.69 == 1 and stake_status.69 == 0 %}
+                        <div class="parking row_parking choose" id="parking-070" sls='1' sks='0'>070</div>
+                    {% elif stall_status.69 == 0 and stake_status.69 == 1 %}
+                        <div class="parking row_parking" id="parking-070" sls='0' sks='1'>070</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-070" sls='0' sks='0'>070</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.70 == 1 and stake_status.70 == 1 %}
+                        <div class="parking row_parking choose" id="parking-071" sls='1' sks='1'>071</div>
+                    {% elif stall_status.70 == 1 and stake_status.70 == 0 %}
+                        <div class="parking row_parking choose" id="parking-071" sls='1' sks='0'>071</div>
+                    {% elif stall_status.70 == 0 and stake_status.70 == 1 %}
+                        <div class="parking row_parking" id="parking-071" sls='0' sks='1'>071</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-071" sls='0' sks='0'>071</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.71 == 1 and stake_status.71 == 1 %}
+                        <div class="parking row_parking choose" id="parking-072" sls='1' sks='1'>072</div>
+                    {% elif stall_status.71 == 1 and stake_status.71 == 0 %}
+                        <div class="parking row_parking choose" id="parking-072" sls='1' sks='0'>072</div>
+                    {% elif stall_status.71 == 0 and stake_status.71 == 1 %}
+                        <div class="parking row_parking" id="parking-072" sls='0' sks='1'>072</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-072" sls='0' sks='0'>072</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.72 == 1 and stake_status.72 == 1 %}
+                        <div class="parking row_parking choose" id="parking-073" sls='1' sks='1'>073</div>
+                    {% elif stall_status.72 == 1 and stake_status.72 == 0 %}
+                        <div class="parking row_parking choose" id="parking-073" sls='1' sks='0'>073</div>
+                    {% elif stall_status.72 == 0 and stake_status.72 == 1 %}
+                        <div class="parking row_parking" id="parking-073" sls='0' sks='1'>073</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-073" sls='0' sks='0'>073</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.73 == 1 and stake_status.73 == 1 %}
+                        <div class="parking row_parking choose" id="parking-074" sls='1' sks='1'>074</div>
+                    {% elif stall_status.73 == 1 and stake_status.73 == 0 %}
+                        <div class="parking row_parking choose" id="parking-074" sls='1' sks='0'>074</div>
+                    {% elif stall_status.73 == 0 and stake_status.73 == 1 %}
+                        <div class="parking row_parking" id="parking-074" sls='0' sks='1'>074</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-074" sls='0' sks='0'>074</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.74 == 1 and stake_status.74 == 1 %}
+                        <div class="parking row_parking choose" id="parking-075" sls='1' sks='1'>075</div>
+                    {% elif stall_status.74 == 1 and stake_status.74 == 0 %}
+                        <div class="parking row_parking choose" id="parking-075" sls='1' sks='0'>075</div>
+                    {% elif stall_status.74 == 0 and stake_status.74 == 1 %}
+                        <div class="parking row_parking" id="parking-075" sls='0' sks='1'>075</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-075" sls='0' sks='0'>075</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.67 == 1 %}
+                        <div class="road show_road" id="road-11_21">
+                    {% else %}
+                        <div class="road" id="road-11_21">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.66 == 1 and stake_status.66 == 1 %}
+                        <div class="parking col_parking choose" id="parking-067" sls='1' sks='1'>067</div>
+                    {% elif stall_status.66 == 1 and stake_status.66 == 0 %}
+                        <div class="parking col_parking choose" id="parking-067" sls='1' sks='0'>067</div>
+                    {% elif stall_status.66 == 0 and stake_status.66 == 1 %}
+                        <div class="parking col_parking" id="parking-067" sls='0' sks='1'>067</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-067" sls='0' sks='0'>067</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 12 -->
+            <tr>
+                <td>12</td>
+                <td colspan="2">
+                    {% if stall_status.67 == 1 and stake_status.67 == 1 %}
+                        <div class="parking col_parking choose" id="parking-068" sls='1' sks='1'>068</div>
+                    {% elif stall_status.67 == 1 and stake_status.67 == 0 %}
+                        <div class="parking col_parking choose" id="parking-068" sls='1' sks='0'>068</div>
+                    {% elif stall_status.67 == 0 and stake_status.67 == 1 %}
+                        <div class="parking col_parking" id="parking-068" sls='0' sks='1'>068</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-068" sls='0' sks='0'>068</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.68 == 1 %}
+                        <div class="road show_road" id="road-12_2">
+                    {% else %}
+                        <div class="road" id="road-12_2">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.69 == 1 %}
+                        <div class="road show_road" id="road-12_3">
+                    {% else %}
+                        <div class="road" id="road-12_3">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.70 == 1 %}
+                        <div class="road show_road" id="road-12_4">
+                    {% else %}
+                        <div class="road" id="road-12_4">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.71 == 1 %}
+                        <div class="road show_road" id="road-12_5">
+                    {% else %}
+                        <div class="road" id="road-12_5">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.72 == 1 %}
+                        <div class="road show_road" id="road-12_6">
+                    {% else %}
+                        <div class="road" id="road-12_6">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.73 == 1 %}
+                        <div class="road show_road" id="road-12_12">
+                    {% else %}
+                        <div class="road" id="road-12_12">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.74 == 1 %}
+                        <div class="road show_road" id="road-12_21">
+                    {% else %}
+                        <div class="road" id="road-12_21">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.75 == 1 and stake_status.75 == 1 %}
+                        <div class="parking col_parking choose" id="parking-076" sls='1' sks='1'>076</div>
+                    {% elif stall_status.75 == 1 and stake_status.75 == 0 %}
+                        <div class="parking col_parking choose" id="parking-076" sls='1' sks='0'>076</div>
+                    {% elif stall_status.75 == 0 and stake_status.75 == 1 %}
+                        <div class="parking col_parking" id="parking-076" sls='0' sks='1'>076</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-076" sls='0' sks='0'>076</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 13 -->
+            <tr>
+                <td>13</td>
+                <td colspan="2" rowspan="2">
+                    <div class="small0">SMALL0</div>
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.76 == 1 and stake_status.76 == 1 %}
+                        <div class="parking row_parking choose" id="parking-077" sls='1' sks='1'>077</div>
+                    {% elif stall_status.76 == 1 and stake_status.76 == 0 %}
+                        <div class="parking row_parking choose" id="parking-077" sls='1' sks='0'>077</div>
+                    {% elif stall_status.76 == 0 and stake_status.76 == 1 %}
+                        <div class="parking row_parking" id="parking-077" sls='0' sks='1'>077</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-077" sls='0' sks='0'>077</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.77 == 1 and stake_status.77 == 1 %}
+                        <div class="parking row_parking choose" id="parking-078" sls='1' sks='1'>078</div>
+                    {% elif stall_status.77 == 1 and stake_status.77 == 0 %}
+                        <div class="parking row_parking choose" id="parking-078" sls='1' sks='0'>078</div>
+                    {% elif stall_status.77 == 0 and stake_status.77 == 1 %}
+                        <div class="parking row_parking" id="parking-078" sls='0' sks='1'>078</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-078" sls='0' sks='0'>078</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.78 == 1 and stake_status.78 == 1 %}
+                        <div class="parking row_parking choose" id="parking-079" sls='1' sks='1'>079</div>
+                    {% elif stall_status.78 == 1 and stake_status.78 == 0 %}
+                        <div class="parking row_parking choose" id="parking-079" sls='1' sks='0'>079</div>
+                    {% elif stall_status.78 == 0 and stake_status.78 == 1 %}
+                        <div class="parking row_parking" id="parking-079" sls='0' sks='1'>079</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-079" sls='0' sks='0'>079</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.79 == 1 and stake_status.79 == 1 %}
+                        <div class="parking row_parking choose" id="parking-080" sls='1' sks='1'>080</div>
+                    {% elif stall_status.79 == 1 and stake_status.79 == 0 %}
+                        <div class="parking row_parking choose" id="parking-080" sls='1' sks='0'>080</div>
+                    {% elif stall_status.79 == 0 and stake_status.79 == 1 %}
+                        <div class="parking row_parking" id="parking-080" sls='0' sks='1'>080</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-080" sls='0' sks='0'>080</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.80 == 1 and stake_status.80 == 1 %}
+                        <div class="parking row_parking choose" id="parking-081" sls='1' sks='1'>081</div>
+                    {% elif stall_status.80 == 1 and stake_status.80 == 0 %}
+                        <div class="parking row_parking choose" id="parking-081" sls='1' sks='0'>081</div>
+                    {% elif stall_status.80 == 0 and stake_status.80 == 1 %}
+                        <div class="parking row_parking" id="parking-081" sls='0' sks='1'>081</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-081" sls='0' sks='0'>081</div>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.75 == 1 %}
+                        <div class="road show_road" id="road-13_12">
+                    {% else %}
+                        <div class="road" id="road-13_12">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.76 == 1 %}
+                        <div class="road show_road" id="road-13_13">
+                    {% else %}
+                        <div class="road" id="road-13_13">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.77 == 1 %}
+                        <div class="road show_road" id="road-13_14">
+                    {% else %}
+                        <div class="road" id="road-13_14">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.78 == 1 %}
+                        <div class="road show_road" id="road-13_15">
+                    {% else %}
+                        <div class="road" id="road-13_15">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.79 == 1 %}
+                        <div class="road show_road" id="road-13_16">
+                    {% else %}
+                        <div class="road" id="road-13_16">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.80 == 1 %}
+                        <div class="road show_road" id="road-13_17">
+                    {% else %}
+                        <div class="road" id="road-13_17">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.81 == 1 %}
+                        <div class="road show_road" id="road-13_18">
+                    {% else %}
+                        <div class="road" id="road-13_18">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.82 == 1 %}
+                        <div class="road show_road" id="road-13_19">
+                    {% else %}
+                        <div class="road" id="road-13_19">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.83 == 1 %}
+                        <div class="road show_road" id="road-13_20">
+                    {% else %}
+                        <div class="road" id="road-13_20">
+                    {% endif %}
+                </td>
+                <td>
+                    {% if road_status.84 == 1 %}
+                        <div class="road show_road" id="road-13_21">
+                    {% else %}
+                        <div class="road" id="road-13_21">
+                    {% endif %}
+                </td>
+                <td colspan="2">
+                    {% if stall_status.81 == 1 and stake_status.81 == 1 %}
+                        <div class="parking col_parking choose" id="parking-082" sls='1' sks='1'>082</div>
+                    {% elif stall_status.81 == 1 and stake_status.81 == 0 %}
+                        <div class="parking col_parking choose" id="parking-082" sls='1' sks='0'>082</div>
+                    {% elif stall_status.81 == 0 and stake_status.81 == 1 %}
+                        <div class="parking col_parking" id="parking-082" sls='0' sks='1'>082</div>
+                    {% else %}
+                        <div class="parking col_parking" id="parking-082" sls='0' sks='0'>082</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <!-- 14 -->
+            <tr>
+                <td>14</td>
+                <td rowspan="2">
+                    {% if stall_status.82 == 1 and stake_status.82 == 1 %}
+                        <div class="parking row_parking choose" id="parking-083" sls='1' sks='1'>083</div>
+                    {% elif stall_status.82 == 1 and stake_status.82 == 0 %}
+                        <div class="parking row_parking choose" id="parking-083" sls='1' sks='0'>083</div>
+                    {% elif stall_status.82 == 0 and stake_status.82 == 1 %}
+                        <div class="parking row_parking" id="parking-083" sls='0' sks='1'>083</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-083" sls='0' sks='0'>083</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.83 == 1 and stake_status.83 == 1 %}
+                        <div class="parking row_parking choose" id="parking-084" sls='1' sks='1'>084</div>
+                    {% elif stall_status.83 == 1 and stake_status.83 == 0 %}
+                        <div class="parking row_parking choose" id="parking-084" sls='1' sks='0'>084</div>
+                    {% elif stall_status.83 == 0 and stake_status.83 == 1 %}
+                        <div class="parking row_parking" id="parking-084" sls='0' sks='1'>084</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-084" sls='0' sks='0'>084</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.84 == 1 and stake_status.84 == 1 %}
+                        <div class="parking row_parking choose" id="parking-085" sls='1' sks='1'>085</div>
+                    {% elif stall_status.84 == 1 and stake_status.84 == 0 %}
+                        <div class="parking row_parking choose" id="parking-085" sls='1' sks='0'>085</div>
+                    {% elif stall_status.84 == 0 and stake_status.84 == 1 %}
+                        <div class="parking row_parking" id="parking-085" sls='0' sks='1'>085</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-085" sls='0' sks='0'>085</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.85 == 1 and stake_status.85 == 1 %}
+                        <div class="parking row_parking choose" id="parking-086" sls='1' sks='1'>086</div>
+                    {% elif stall_status.85 == 1 and stake_status.85 == 0 %}
+                        <div class="parking row_parking choose" id="parking-086" sls='1' sks='0'>086</div>
+                    {% elif stall_status.85 == 0 and stake_status.85 == 1 %}
+                        <div class="parking row_parking" id="parking-086" sls='0' sks='1'>086</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-086" sls='0' sks='0'>086</div>
+                    {% endif %}
+
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.86 == 1 and stake_status.86 == 1 %}
+                        <div class="parking row_parking choose" id="parking-087" sls='1' sks='1'>087</div>
+                    {% elif stall_status.86 == 1 and stake_status.86 == 0 %}
+                        <div class="parking row_parking choose" id="parking-087" sls='1' sks='0'>087</div>
+                    {% elif stall_status.86 == 0 and stake_status.86 == 1 %}
+                        <div class="parking row_parking" id="parking-087" sls='0' sks='1'>087</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-087" sls='0' sks='0'>087</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.87 == 1 and stake_status.87 == 1 %}
+                        <div class="parking row_parking choose" id="parking-088" sls='1' sks='1'>088</div>
+                    {% elif stall_status.87 == 1 and stake_status.87 == 0 %}
+                        <div class="parking row_parking choose" id="parking-088" sls='1' sks='0'>088</div>
+                    {% elif stall_status.87 == 0 and stake_status.87 == 1 %}
+                        <div class="parking row_parking" id="parking-088" sls='0' sks='1'>088</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-088" sls='0' sks='0'>088</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.88 == 1 and stake_status.88 == 1 %}
+                        <div class="parking row_parking choose" id="parking-089" sls='1' sks='1'>089</div>
+                    {% elif stall_status.88 == 1 and stake_status.88 == 0 %}
+                        <div class="parking row_parking choose" id="parking-089" sls='1' sks='0'>089</div>
+                    {% elif stall_status.88 == 0 and stake_status.88 == 1 %}
+                        <div class="parking row_parking" id="parking-089" sls='0' sks='1'>089</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-089" sls='0' sks='0'>089</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.89 == 1 and stake_status.89 == 1 %}
+                        <div class="parking row_parking choose" id="parking-090" sls='1' sks='1'>090</div>
+                    {% elif stall_status.89 == 1 and stake_status.89 == 0 %}
+                        <div class="parking row_parking choose" id="parking-090" sls='1' sks='0'>090</div>
+                    {% elif stall_status.89 == 0 and stake_status.89 == 1 %}
+                        <div class="parking row_parking" id="parking-090" sls='0' sks='1'>090</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-090" sls='0' sks='0'>090</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.90 == 1 and stake_status.90 == 1 %}
+                        <div class="parking row_parking choose" id="parking-091" sls='1' sks='1'>091</div>
+                    {% elif stall_status.90 == 1 and stake_status.90 == 0 %}
+                        <div class="parking row_parking choose" id="parking-091" sls='1' sks='0'>091</div>
+                    {% elif stall_status.90 == 0 and stake_status.90 == 1 %}
+                        <div class="parking row_parking" id="parking-091" sls='0' sks='1'>091</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-091" sls='0' sks='0'>091</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2">
+                    {% if stall_status.91 == 1 and stake_status.91 == 1 %}
+                        <div class="parking row_parking choose" id="parking-092" sls='1' sks='1'>092</div>
+                    {% elif stall_status.91 == 1 and stake_status.91 == 0 %}
+                        <div class="parking row_parking choose" id="parking-092" sls='1' sks='0'>092</div>
+                    {% elif stall_status.91 == 0 and stake_status.91 == 1 %}
+                        <div class="parking row_parking" id="parking-092" sls='0' sks='1'>092</div>
+                    {% else %}
+                        <div class="parking row_parking" id="parking-092" sls='0' sks='0'>092</div>
+                    {% endif %}
+                </td>
+                <td rowspan="2" colspan="2">
+                    <div class="small0">SMALL0</div>
+                </td>
+            </tr>
+            <!-- 15 -->
+            <tr>
+                <td>15</td>
+                <td colspan="7">
+                    <div class='bar3'>BAR3</div>
+                </td>
+            </tr>
+    </div>
+    <!-- 弹窗 -->
+    <div class="popup" id="popup">
+
+        <h2 class="popup-title" id="popup-title"></h2>
+
+        <p>停车状态：<span id="popup-parking-status"></span></p>
+
+        <p>充电状态：<span id="popup-charging-status"></span></p>
+
+        <button class="popup-park-button" id="popup-park-button">立即停车</button>
+        <button class="popup-park-button" id="popup-bark-button">立即取车</button>
+        <button class="popup-close-button" id="popup-close-button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关闭
+        </button>
+    </div>
+
+</section>
+<!--====== 地图结束 ======-->
+
+<!--====== Jquery ======-->
+<script src="../static/js/jquery-3.6.0.min.js"></script>
+<!--====== Bootstrap ======-->
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+<!--=== Owl-Carousel ===-->
+<script src="../static/js/owl.carousel.min.js"></script>
+<!--====== Nice Select ======-->
+<script src="../static/js/jquery.nice-select.min.js"></script>
+<!--====== Magnific ======-->
+<script src="../static/js/jquery.magnific-popup.min.js"></script>
+<!--====== Wow ======-->
+<script src="../static/js/wow.min.js"></script>
+<!--====== Main JS ======-->
+<script src="../static/js/main.js"></script>
+<script>
+    // for login
+    const login_openButton = document.getElementById('login_open-popup');
+    const login_closeButton = document.getElementById('login_close-popup');
+    const login_popup = document.getElementById('login_popup');
+
+    login_openButton.addEventListener('click', () => {
+      login_popup.style.display = 'block';
+    });
+
+    login_closeButton.addEventListener('click', () => {
+      login_popup.style.display = 'none';
+    });
+
+    // for stall pop
+    const toggleButton = document.querySelector('#toggle-button');
+    const sidebar = document.querySelector('#sidebar');
+
+    toggleButton.addEventListener('click', function () {
+        sidebar.classList.toggle('closed');
+    });
+
+    // 获取所有停车位的HTML元素
+    const parkingSpaces = document.querySelectorAll('.parking');
+    // 获取弹窗和弹窗中的元素
+    const popup = document.getElementById('popup');
+    const popupTitle = document.getElementById('popup-title');
+    const parkingStatus = document.getElementById('popup-parking-status');
+    const chargingStatus = document.getElementById('popup-charging-status');
+    const parkButton = document.getElementById('popup-park-button');
+    const barkButton = document.getElementById('popup-bark-button');
+    const closeButton = document.getElementById('popup-close-button')
+
+    // 打开弹窗并显示停车位信息
+    function openPopup(spaceId, isOccupied, isCharging) {
+        // 设置弹窗标题
+        popupTitle.innerText = `停车位 ${spaceId}`;
+
+        // 设置停车状态
+        if (isOccupied == '1') {
+            parkingStatus.innerText = '已停车';
+        } else {
+            parkingStatus.innerText = '空闲';
+        }
+        // 设置充电状态
+        if (isCharging == '1') {
+            chargingStatus.innerText = '正在充电';
+        } else {
+            chargingStatus.innerText = '未充电';
+        }
+        // 如果停车位为空，则显示"立即停车"按钮
+        if (isOccupied == '0') {
+            parkButton.style.display = 'block';
+            barkButton.style.display = 'none';
+        } else {
+            parkButton.style.display = 'none';
+            barkButton.style.display = 'block';
+        }
+        // 显示弹窗
+        popup.style.display = 'block';
+    }
+
+    // 关闭弹窗
+    function closePopup() {
+        popup.style.display = 'none';
+    }
+
+    // 为每个停车位添加click事件监听器
+    parkingSpaces.forEach((space) => {
+        space.addEventListener('click', () => {
+            // 获取该停车位的ID、停车状态和充电状态
+            const spaceId = space.id.split('-')[1];
+            const isOccupied = document.getElementById(`parking-${spaceId}`).getAttribute('sls');
+            //alert(isOccupied)
+            const isCharging = document.getElementById(`parking-${spaceId}`).getAttribute('sks');
+            // 打开弹窗并显示停车位信息
+            openPopup(spaceId, isOccupied, isCharging);
+        });
+    });
+    closeButton.addEventListener('click', () => {
+        closePopup();
+    });
+
+    // 为"立即停车"按钮添加click事件监听器
+    parkButton.addEventListener('click', () => {
+        // TODO: 处理立即停车的逻辑
+        // 关闭弹窗
+        closePopup();
+    });
+</script>
+
+</body>
+
+</html>

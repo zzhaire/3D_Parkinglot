@@ -1,0 +1,99 @@
+.container1 {
+    width: 800px;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+    border: 2px solid black; /* 添加边框 */
+    border-radius: 0px; /* 添加圆角 */
+    background-color:#7cb4ef; /* 添加背景颜色 */
+    font-family: Arial, sans-serif;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+  }
+  .container1::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+  }
+  h1 {
+    margin-top: 0;
+    text-align: center;
+  }
+  .charge-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .timer {
+    text-align: center;
+  }
+  .timer-display {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+
+
+.start-btn,
+.stop-btn {
+display: inline-block;
+padding: 10px 20px;
+margin: 0 10px;
+border: none;
+border-radius: 10px;
+font-size: 16px;
+font-weight: bold;
+color: #fff;
+background-color: #2b2739;
+transition: background-color 0.2s ease-out, transform 0.2s ease-out;
+cursor: pointer;
+box-shadow: 0px 5px #272827;
+}
+
+
+  .buttons button {
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+
+  .order-section {
+    margin-top: 40px;
+  }
+  .charging {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .charging td {
+    padding: 10px;
+    border: 3px solid #000000;
+  }
+  .charging td:first-child {
+    font-weight: bold;
+  }
+  .charge-time {
+    font-weight: bold;
+  }
+  .cost {
+    font-weight: bold;
+
+  }
+  .device-model {
+    font-weight: bold;
+  }
+
+  .buttons button:focus {
+    outline: none;
+    box-shadow: 0 0 5px #5B9DD9;
+    background-color: #97b7e7;
+  }

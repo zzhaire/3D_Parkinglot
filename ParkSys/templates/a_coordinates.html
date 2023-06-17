@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Path</title>
+</head>
+<body>
+    {% block title %}
+    {% endblock %}
+
+    <p>Find Path Success!</p>
+    {% for coord in coordinates %}
+        <div>({{ coord.0 }}, {{ coord.1 }})</div>
+    {% endfor %}
+
+</body>
+</html>
+

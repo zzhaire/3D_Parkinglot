@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block index %}
+<!--====== Banner Start ======-->
+<section class="banner two">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="banner-content text-center">
+                    <h1 class="head">
+                        <p>欢迎来到集思广益团队</p>
+                        <span>停车场管理系统</span>
+                    </h1>
+                    <p class="text">
+                        <h2><a style="font-size: 30px;color: white" href ="{% url 'map' %}">点击停车<a></h2>
+                    </p>
+                </div>
+                <!-- <div class="video"> -->
+                <img src="{% static 'image/index.png' %}" alt="" class="laptop">
+
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<!--     最下面的栏    -->
+
+<!--====== Banner End ======-->
+<!--====== Footer Area START ======-->
+{% endblock %}
+{% block bottom_bar %}
+<footer class="footer-area two">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="footer-box one">
+                    <div class="logo">
+                        <img src="../static/picture/logo-2.png" alt="">
+                    </div>
+                    <p class="text">停车场管理系统开发于2023年3月16日，系统完整，具有良好的图形界面和用户界面
+                        感谢你的使用
+                    </p>
+
+                    <div class="social">
+                        <a href="javaScript:;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-twitter"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="footer-box two">
+                    <h4 class="lasthead">开发团队</h4>
+                    <div class="footer-list">
+                        <ul>
+                            <li><a href="javaScript:;"> 陈宏明 焦晨元</a></li>
+                            <li><a href="javaScript:;"> 张哲源 周易</a></li>
+                            <li><a href="javaScript:;"> 钱子贤 栾佳浩</a></li>
+                            <li><a href="javaScript:;"> 严睿</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="footer-box three">
+                    <h4 class="lasthead">更多</h4>
+                    <div class="footer-list">
+                        <ul>
+                            <li><a href="{% url 'contact'%}"> 联系我们</a></li>
+                            <li><a href="{% url 'contact' %}"> 意见反馈 </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="copyright two">
+    <div class="container">
+        <div class="row">
+            <div class="col-12  wow fadeInUp text-center">
+                <p class="text">Copyright &copy; 2023.ParkSys. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

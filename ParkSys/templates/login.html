@@ -1,0 +1,130 @@
+{% load static %}
+<html lang="UTF-8">
+
+<head>
+    <title>Home</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8"/>
+    <meta name="keywords" content=""
+    />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="stylesheet" href="{% static 'css/style0.css'%}" type="text/css" media="all"/>
+</head>
+<body>
+<div id="bg">
+    <canvas></canvas>
+    <canvas></canvas>
+    <canvas></canvas>
+</div>
+
+<h1>Parking System</h1>
+<div class="sub-main-w3">
+    <form class="form-4" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>请登录/注册!<i class="fas fa-level-down-alt"></i></h2>
+        <div class="form-style-agile">
+            <label><i class="fas fa-user"></i>请填入手机号码</label>
+            <input placeholder="请输入您的手机号码" name="login" type="text" required>
+        </div>
+        <div class="form-style-agile">
+            <label><i class="fas fa-unlock-alt"></i>请提交车牌信息</label>
+            <input placeholder="请输入车牌号码/识别结果" name="plate-number" id="plate-number" type="text" required>
+        </div>
+        <div>
+            <p>
+                <input type='file' name="image-upload" id='image-upload' accept="image/*">
+            </p>
+            <input style="width: 500px" type="submit" name="submit" value="点这里可以识别图片~">
+            <input style="width: 500px" type="submit" name="send0" value="登录停车">
+        </div>
+        <div class="wthree-text">
+            <ul>
+                <li>
+                    <p></p>
+                    <a href="{% url 'homepage' %}">返回主页</a>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+
+<div class="footer">
+    <p>Copyright &copy; 2023.集思广益停车场.<a target="_blank" href="{% url 'contact' %}">联系我们</a></p>
+</div>
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script>
+    $(document).ready(function () {
+        // 处理图片上传和识别
+        $('[name="submit"]').on('click', function (e) {
+            e.preventDefault();
+
+            var formData = new FormData();
+            formData.append('image-upload', $('#image-upload')[0].files[0]);
+
+            $.ajax({
+                url: '/recognize/',  // 这里是你的图片识别接口
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    $('#plate-number').val(data.plate_number);
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+
+        // 处理表单提交
+        $('[name="send0"]').on('click', function (e) {
+            e.preventDefault();
+
+            var formData = new FormData();
+            var loginValue = $('[name="login"]').val();
+            if (loginValue.length != 11){
+                alert("请输入11位电话号码！")
+                return 
+            }
+            var plateNumberValue = $('[name="plate-number"]').val();
+            if (plateNumberValue.length != 7){
+                alert("请输入正确车牌号！")
+                return 
+            }
+
+            formData.append('login', $('[name="login"]').val());
+            formData.append('plate-number', $('[name="plate-number"]').val());
+
+            $.ajax({
+                url: '/login/',  // 这里是你的表单提交接口
+                type: 'POST',
+                data: formData,
+                success: function (data) {
+                    // 在这里处理登录/注册成功后的反馈信息
+                    if (data.status === 1) {
+                    // 登录/注册成功
+                        window.location.href = '{% url "homepage" %}'; // 跳转到主页
+                    } else {
+                        // 登录/注册失败
+                        // 处理失败情况，显示错误消息等
+                        alert("登录失败")
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

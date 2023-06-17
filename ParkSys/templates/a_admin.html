@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台管理</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        h2 {
+            text-align: left;
+        }
+
+        hr {
+            border-style: dashed;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+        }
+
+        .input-container {
+            display: flex;
+            align-self: flex-start;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .input-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>后台管理</h1>
+    <h2>数据库管理</h2>
+    <div class="button-container">
+        <form method="get">
+            <button type="submit" name="initstall">初始化 《车位》 数据表</button>
+        </form>
+
+        <form method="get">
+            <button type="submit" name="initstake">初始化 《充电桩》 数据表</button>
+        </form>
+
+        <form method="get">
+            <button type="submit" name="initrecord">初始化 《停车记录》 数据表</button>
+        </form>
+
+        <form method="get">
+            <button type="submit" name="inituser">初始化 《用户》 数据表</button>
+        </form>
+    </div>
+    
+    <hr> <!-- 分割线 -->
+
+    <h2>定位测试1</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-container">
+            <div class="input-label">
+                 <label for="{{ lc_car1_form.stall_no.auto_id}}">车位号：</label>
+                {{ lc_car1_form.stall_no}}
+            </div>
+            
+            <div class="button-container">
+            <button type="submit" name="locate_car1">提交</button>
+            </div>
+        </div>
+    </form>
+    <h2>定位测试2</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-container">
+            <div class="input-label">
+                 <label for="{{ lc_car2_form.phone_no.auto_id}}">手机号：</label>
+                {{ lc_car2_form.phone_no}}
+            </div>
+
+            <div class="input-label">
+                 <label for="{{ lc_car2_form.car_no.auto_id}}">车牌号：</label>
+                {{ lc_car2_form.car_no}}
+            </div>
+
+            <div class="button-container">
+            <button type="submit" name="locate_car2">提交</button>
+            </div>
+        </div>
+    </form>
+
+    <hr> <!-- 分割线 -->
+
+    <h2>寻路测试</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-container">
+            <div class="input-label">
+                 <label for="{{ find_path_form.start_pos_r.auto_id}}">起始位置行号：</label>
+                {{ find_path_form.start_pos_r}}
+            </div>
+
+            <div class="input-label">
+                 <label for="{{ find_path_form.start_pos_c.auto_id}}">起始位置列号：</label>
+                {{ find_path_form.start_pos_c}}
+            </div>
+
+            <div class="input-label">
+                 <label for="{{ find_path_form.end_pos_r.auto_id}}">结束位置行号：</label>
+                {{ find_path_form.end_pos_r}}
+            </div>
+
+            <div class="input-label">
+                 <label for="{{ find_path_form.end_pos_c.auto_id}}">结束位置列号：</label>
+                {{ find_path_form.end_pos_c}}
+            </div>
+
+            <div class="button-container">
+            <button type="submit" name="find_path">寻路提交</button>
+            <button type="submit" name="render_path">渲染提交</button>
+            </div>
+        </div>
+    </form>
+    
+    <hr> <!-- 分割线 -->
+
+    <h2>停车测试</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-container">
+            <div class="input-label">
+                 <label for="{{ rest_car_form.phone_no.auto_id}}">手机号：</label>
+                {{ rest_car_form.phone_no}}
+              <!--
+                <label for="phone_number">手机号：</label>
+                <input type="text" id="phone_number" name="phone_number">
+              -->
+            </div>
+            <div class="input-label">
+                 <label for="{{ rest_car_form.car_no.auto_id}}">车牌号：</label>
+                {{ rest_car_form.car_no}}
+              <!--
+                <label for="license_plate">车牌号：</label>
+                <input type="text" id="license_plate" name="license_plate">
+              -->
+            </div>
+            <div class="input-label">
+                 <label for="{{ rest_car_form.stall_no.auto_id}}">车位号：</label>
+                {{ rest_car_form.stall_no}}
+              <!--
+                <label for="parking_number">车位号：</label>
+                <input type="text" id="parking_number" name="parking_number">
+              -->
+            </div>
+            <div class="input-label">
+                 <label for="{{ rest_car_form.entry_no.auto_id}}">入口号：</label>
+                {{ rest_car_form.entry_no}}
+            </div>
+            <div class="button-container">
+            <button type="submit" name="rest_car">提交</button>
+            </div>
+        </div>
+    </form>
+
+    <hr> <!-- 分割线 -->
+
+    <h2>取车测试</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-container">
+            <div class="input-label">
+                 <label for="{{ fetch_car_form.phone_no.auto_id}}">手机号：</label>
+                {{ fetch_car_form.phone_no}}
+            </div>
+
+            <div class="input-label">
+                 <label for="{{ fetch_car_form.car_no.auto_id}}">车牌号：</label>
+                {{ fetch_car_form.car_no}}
+            </div>
+
+            <div class="input-label">
+                 <label for="{{ fetch_car_form.exit_no.auto_id}}">出口号：</label>
+                {{ fetch_car_form.exit_no}}
+            </div>
+
+            <div class="button-container">
+            <button type="submit" name="fetch_car">提交</button>
+            </div>
+        </div>
+    </form>
+
+    <h2>充电测试-开始充电</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-container">
+            <div class="input-label">
+                 <label for="{{ start_charge_form.stake_no.auto_id }}">充电桩号：</label>
+                {{ start_charge_form.stake_no }}
+            </div>
+
+            <div class="button-container">
+            <button type="submit" name="start_charge">提交</button>
+            </div>
+        </div>
+    </form>
+
+    <h2>充电测试-完成充电</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-container">
+            <div class="input-label">
+                 <label for="{{ finish_charge_form.stake_no.auto_id}}">充电桩号：</label>
+                {{ finish_charge_form.stake_no }}
+            </div>
+
+            <div class="button-container">
+            <button type="submit" name="finish_charge">提交</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,144 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block contact %}
+<!-- {extends 'base.html'} -->
+<!-- {%block content%} -->
+<!--====== Banner Start ======-->
+<section class="breadcrumb-area">
+    <div class="container">
+        <div class="content">
+            <h2 class="breadd  wow fadeInUp">
+                联系我们
+            </h2>
+            <ul class="breadcrumb-list  wow fadeInUp">
+                <li><a href="{% url 'homepage'%}">回到主页 /</a></li>
+                <li>联系我们</li>
+            </ul>
+        </div>
+    </div>
+</section>
+<!--====== Banner End ======-->
+
+<!--====== Map Area Start ======-->
+
+<section class="map-area ">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7  wow fadeInUp">
+                <div class="map-box">
+                    <img src="{% static 'picture/contact-1.jpg'%}" alt="">
+                    <iframe src="javascript:;"></iframe>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="mapcontent">
+                    <div class="item  wow fadeInUp">
+                        <div class="thumb">
+                            <div class="icon">
+                                <img src="{% static 'picture/content-1.png'%}" alt="">
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h3 class="subtitle">邮箱地址</h3>
+                            <p class="text">mingxi01forever@gmail.com</p>
+                            <p class="text">1316821468@qq.com</p>
+                        </div>
+                    </div>
+                    <div class="item  wow fadeInUp">
+                        <div class="thumb">
+                            <div class="icon">
+                                <img src="{% static 'picture/content-2.png' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h3 class="subtitle">电话号码</h3>
+                            <p class="text">13636587437</p>
+                            <p class="text">(88) 908 675 43667</p>
+                        </div>
+                    </div>
+                    <div class="item  wow fadeInUp">
+                        <div class="thumb">
+                            <div class="icon">
+                                <img src=" {% static 'picture/content-3.png'%}" alt="">
+                            </div>
+                        </div>
+                        <div class="content">
+                            <h3 class="subtitle">地址</h3>
+                            <p class="text">上海市嘉定区曹安公路4800号</p>
+                            <p class="text">同济大学嘉定校区</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== Map Area Start ======-->
+
+<!-- {%endblock%} -->
+
+<!--====== Footer Area START ======-->
+<!-- 最下面的栏 -->
+<!--====== Back to top start ======-->
+{% endblock %}
+{% block bottom_bar %}
+<footer class="footer-area two">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="footer-box one">
+                    <div class="logo">
+                        <img src="../static/picture/logo-2.png" alt="">
+                    </div>
+                    <p class="text">停车场管理系统开发于2023年3月16日，系统完整，具有良好的图形界面和用户界面
+                        感谢你的使用
+                    </p>
+
+                    <div class="social">
+                        <a href="javaScript:;"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-twitter"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-google-plus-g"></i></a>
+                        <a href="javaScript:;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="footer-box two">
+                    <h4 class="lasthead">开发团队</h4>
+                    <div class="footer-list">
+                        <ul>
+                            <li><a href="javaScript:;"> 陈宏明 焦晨元</a></li>
+                            <li><a href="javaScript:;"> 张哲源 周易</a></li>
+                            <li><a href="javaScript:;"> 钱子贤 栾佳浩</a></li>
+                            <li><a href="javaScript:;"> 严睿</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="footer-box three">
+                    <h4 class="lasthead">更多</h4>
+                    <div class="footer-list">
+                        <ul>
+                            <li><a href="{% url 'contact'%}"> 联系我们</a></li>
+                            <li><a href="{% url 'contact' %}"> 意见反馈 </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<div class="copyright two">
+    <div class="container">
+        <div class="row">
+            <div class="col-12  wow fadeInUp text-center">
+                <p class="text">Copyright &copy; 2023.ParkSys. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,573 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>室内三维场景模型拾取示例|室内三维可视化引擎|易景三维可视化平台</title>
+    <meta name="keywords" content="室内三维场景模型拾取示例,室内三维场景,三维场景引擎,三维场景制作,室内定位,易景三维可视化平台" />
+    <meta name="description"
+        content="室内三维场景模型拾取示例,易景室内三维可视化引擎提供三维场景浏览、缩放、旋转、图层显隐等基础功能，支持自定义室内三维场景显示风格及样式，可自动绘制楼层热力图、散点图等专题三维场景，快速进行空间大数据分析展示。支持跨楼层精准的点到点之间的最短、最优路径计算，支持对路径结果进行导航和动画,并提供丰富的三维场景主题资源供二次开发调用。" />
+    <link rel="shortcut icon" type="image/ico" href="../image/favicon.ico" />
+    <link href="{% static '/css/common.css' %}" rel="stylesheet" />
+    <link href="{% static 'lib/bootstrap.min.css' %}" rel="stylesheet">
+    <style type="text/css">
+        #panel-1 {
+            position: absolute;
+            left: 2%;
+            bottom: 10%;
+        }
+
+        #popupDiv {
+            position: absolute;
+            width: 280px;
+            z-index: 1;
+            background-color: #EDF2FC;
+        }
+
+        #popupDiv #contentDiv {
+            margin: 5px;
+            width: 90px;
+            float: left;
+            text-align: center;
+        }
+
+        #popupDiv #closeDiv {
+            float: right;
+        }
+    </style>
+    <script type="text/javascript" language="JavaScript">
+        function getstatus(map, content, id) {
+            $.ajax(
+                {
+                    url: '/showstallstatus/',
+                    type: 'post',
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        id: content
+                    },
+                    success: function (data) {
+
+                        //alert('停车成功')
+                        //$("#sum").val(data)
+                        st = data.status;
+                        console.log(st)
+                        openPopup(map, content, st, id)
+
+                    },
+                })
+        }
+
+        function creatDiv(map, content, st, id) {
+            var handleClick = function () {
+                console.log(content)
+                console.log('pre')
+                park_in(map, content, id)
+            };
+            var oldPopup = document.getElementById("popupDiv");
+            if (oldPopup) {
+                oldPopup.parentNode.removeChild(oldPopup);
+            }
+            console.log(content);
+            console.log(st);
+            if (document.getElementById("popupDiv")) {
+                console.log('444')
+                document.getElementById("popupDiv").style.display = "block";
+                document.getElementById("ccomephone").innerHTML = "车位编号" + content;
+                document.getElementById("status").innerHTML = "状态" + st;
+                document.getElementById("bcome");
+            } else {
+                console.log('666')
+                var s = document.createElement("div");
+                console.log(content)
+                s.innerHTML = "<div id = 'popupDiv' style = 'cursor : hand'> <div id = 'closeDiv'><img src = 'delete.png' onclick = 'closePopup()' style='cursor : hand; width:14px;'/></div><div id = 'contentDiv'><p id ='ccomephone' style='width: 232PX;margin-top: 26px;margin-left: 13px;margin-bottom: 7px;'>车位编号:" + content + "</p> <p id ='status' style='width: 232PX;margin-top: 26px;margin-left: 13px;margin-bottom: 7px;'>状态:" + st + "</p><input id = \"bcome\" style='margin-left: 108px;' type=\"button\" value=\"提交\" ></div></div>";
+                document.getElementsByTagName("body")[0].appendChild(s);
+
+            }
+            var bcome = document.getElementById('bcome');
+            if (bcome) {
+                bcome.removeEventListener('click', handleClick);
+                bcome.addEventListener('click', handleClick);
+            }
+        }
+        function openPopup(map, val, st, id) {
+            console.log(document.getElementById("popupDiv"));
+            var posX = 0, posY = 0;
+            var event = event || window.event;
+            if (event.pageX || event.pageY) {
+                posX = event.pageX;
+                posY = event.pageY;
+            } else if (event.clientX || event.clientY) {
+                console.log('tat')
+                posX = document.documentElement.scrollLeft + document.body.scrollLeft;
+                posY = document.documentElement.scrollTop + document.body.scrollTop;
+            }
+            creatDiv(map, val, st, id);
+            var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+
+            if (isChrome) {
+                document.getElementById("popupDiv").style.left = posX + "px";
+                document.getElementById("popupDiv").style.top = posY + "px";
+            } else {
+                //不是Chrome，默认为IE
+                document.getElementById("popupDiv").style.pixelLeft = posX;
+                document.getElementById("popupDiv").style.pixelTop = posY;
+            }
+        }
+
+        //提交数据            
+        function pushdata(content) {
+            console.log(content)
+            console.log('this')
+            $.ajax(
+                {
+                    url: '/parkin/',
+                    type: 'post',
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        id: content
+                    },
+                    success: function (data) {
+                        console.log(content)
+                        alert('停车成功')
+                        //$("#sum").val(data)
+
+                    },
+                })
+        }
+        function park_in(map, content, id) {
+            //dosomething
+            console.log(content)
+            console.log(id)
+            console.log('abc')
+            pushdata(content)
+            document.getElementById("popupDiv").style.display = 'none';
+
+        }
+
+        //关闭弹窗
+        function closePopup() {
+            if (document.getElementById("popupDiv")) {
+                document.getElementById("popupDiv").style.display = 'none';
+            }
+
+        }
+        function printcolor(map, id, st) {
+            if (st == 'free') {
+                map.changeModelColor({
+                    id: [id],
+                    color: '#00FF00'
+                })
+            }
+            else {
+                map.changeModelColor({
+                    id: [id],
+                    color: '#0000FF'
+                })
+            }
+
+        }
+        function changecolor(map, ID, id) {
+            $.ajax(
+                {
+                    url: '/showstallstatus/',
+                    type: 'post',
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        id: ID
+                    },
+                    success: function (data) {
+                        st = data.status;
+                        printcolor(map, id, st)
+                    },
+                })
+        }
+        /*
+        $("#park").click(function () {
+        })*/
+    </script>
+</head>
+
+<body>
+
+    <div id="map-container"></div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <h1><a href="/" title="室内三维场景-室内三维场景" target="_blank">易景室内三维可视化引擎</a>（模型拾取示例）</h1>
+        </div>
+    </nav>
+    <div id="panel-1" class="btn-floor-vertical">
+        <button id="btnPick" class="btn btn-default">开启模型拾取</button>
+    </div>
+    <!-- data-backdrop="false" -->
+    <div id="dlgModelInfo" class="modal fade">
+        <div class="modal-dialog bottom">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">模型信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">楼层</div>
+                            <div class="col-md-9" id="m-fnum"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">ID</div>
+                            <div class="col-md-9" id="m-ID"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">typeID</div>
+                            <div class="col-md-9" id="m-type"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">坐标x</div>
+                            <div class="col-md-9" id="m-x"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">坐标y</div>
+                            <div class="col-md-9" id="m-y"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- data-backdrop="false" -->
+    <div id="dlgLabellInfo" class="modal fade">
+        <div class="modal-dialog bottom">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">标注信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">楼层</div>
+                            <div class="col-md-9" id="l-fnum"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">ID</div>
+                            <div class="col-md-9" id="l-ID"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">坐标x</div>
+                            <div class="col-md-9" id="l-x"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">坐标y</div>
+                            <div class="col-md-9" id="l-y"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- data-backdrop="false" -->
+    <div id="dlgPOIInfo" class="modal fade">
+        <div class="modal-dialog bottom">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">POI信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3">楼层</div>
+                            <div class="col-md-9" id="p-fnum"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">ID</div>
+                            <div class="col-md-9" id="p-ID"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">坐标x</div>
+                            <div class="col-md-9" id="p-x"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">坐标y</div>
+                            <div class="col-md-9" id="p-y"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <div id="myModal" class="modal">
+
+        <!-- 弹窗内容 -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>弹窗头部</h2>
+            </div>
+            <div class="modal-body">
+                <p>弹窗文本...</p>
+                <p>弹窗文本...</p>
+            </div>
+            <div class="modal-footer">
+                <h3>弹窗底部</h3>
+            </div>
+        </div>
+
+    </div>
+    <script src="{% static 'lib/esmap-3.0.min.js' %}"></script>
+    <script src="{% static '/lib/jquery-2.1.4.min.js' %}"></script>
+    <script src="{% static '/lib/jquery.qrcode.min.js' %}"></script>
+    <script src="{% static '/lib/tips_controls.js'%}"></script>
+    <script src="{% static '/lib/bootstrap.min.js' %}"></script>
+    <script src="{% static '/lib/js/layerFloor.js' %}"></script>
+    <script src="{% static '/lib/config.js' %}"></script>
+
+    <script type="text/javascript">
+        var map = null;
+        var esmapID = getQueryString('id') || defaultOpt.mapID;
+        var building;
+        var navi;
+        var h;
+        $(function () {
+            var ctlOpt = new esmap.ESControlOptions({
+                position: esmap.ESControlPositon.RIGHT_TOP,
+                imgURL: "image/wedgets/",
+            });
+            // 放大、缩小控件配置
+            var ctlOpt1 = new esmap.ESControlOptions({
+                position: esmap.ESControlPositon.LEFT_TOP, // 位置 左上角
+                // 位置x,y的偏移量
+                offset: {
+                    x: 20,
+                    y: 70,
+                },
+                imgURL: "image/wedgets/",
+            });
+            var container = document.getElementById("map-container");
+            map = new esmap.ESMap({
+                mode: esmap.MapMode.Building,
+                container: $('#map-container')[0], //渲染dom
+                mapDataSrc: "{%static '\data' %}", //三维场景数据位置
+                token: 'parkingtoken'
+            });
+
+            //打开三维场景数据
+            map.openMapById('parking_map01');
+            map.showCompass = true;
+
+            //三维场景加载完成事件
+            map.on('loadComplete', function () {
+                building = map.getBuilding();
+                console.log(building)
+                var floorControl = new esmap.ESScrollFloorsControl(map, ctlOpt);
+                // var zoomControl = new esmap.ESZoomControl(map, ctlOpt1);
+                createNavi();
+                var fnum = building.focusFloorNum;
+                var floorLayer = building.getFloor(fnum);
+                var gpos = floorLayer.mapCoord;
+
+                //添加文本标签图层
+                var layer1 = new esmap.ESLayer("textMarker");
+                var tm = new esmap.ESTextMarker({
+                    //x: gpos.x - 30,
+                    y: gpos.y - 30,
+                    name: "测试标签1",
+                    fontsize: 34,
+                    fillcolor: "72,61,139", //填充色
+                    fontsize: "12.0", //字体大小
+                    strokecolor: "255,255,0" //边框色
+                });
+                layer1.addMarker(tm);
+                floorLayer.addLayer(layer1);
+
+                //添加自定义图片标签层
+                var layer = new esmap.ESLayer('imageMarker');
+                var im = new esmap.ESImageMarker({
+                    name: '测试ImageMarker',
+                    //x: gpos.x + 30,
+                    //y: gpos.y - 30,
+                    url: 'image/user.png',
+                    size: 64
+                });
+                layer.addMarker(im);
+                floorLayer.addLayer(layer);
+            });
+
+            var startPick = true; // 控制是否弹出信息框
+            var lstID=0,lstid;
+            //点击事件
+            map.on('mapClickNode', function (event) {
+                console.log(event);
+                if (event.nodeType == esmap.ESNodeType.NONE || event.nodeType == esmap.ESNodeType.FLOOR) return;
+                var model = event;
+                if (!startPick) return;
+                if (event.nodeType == esmap.ESNodeType.IMAGE_MARKER || event.nodeType == esmap.ESNodeType.TEXT_MARKER)
+                    model.flash && model.flash({
+                        scale: 1.3,
+                        time: 0.3
+                    }); //闪烁
+                alert('p')
+                var d;
+                switch (event.nodeType) {
+                    case esmap.ESNodeType.MODEL:
+                        d = {
+                            type: event.typeID,
+                            ID: event.dataID,
+                            id: event.ID,
+                            fnum: event.FloorNum,
+                            name: !event.name ? "暂无" : event.name,
+                            x: event.label ? event.label.mapCoord.x : event.mapCoord.x,
+                            y: event.label ? event.label.mapCoord.y : event.mapCoord.y,
+                            z: event.label ? event.label.mapCoord.z : event.mapCoord.z
+                        };
+                        //gui.showModelInfo(d);
+                        getstatus(map, d.ID, d.id);
+                        //var modal = document.getElementById('myModal');
+                        //modal.style.display = "block";
+                        //creatDiv('no')
+                        break; //打开对话框
+                }
+                alert('p')
+                //changecolor(map, d.ID, d.id);
+                //if(lstID)
+                //changecolor(map, lstID, lstid);
+                lstID=d.ID;
+                lstid=d.id;
+                //map.moveTo(d);
+            });
+
+            //开启点击查询
+            $('#btnPick').on('click', function () {
+                startPick = true;
+            });
+
+            //关闭点击查询
+            $('#btnPickend').on('click', function () {
+                startPick = false;
+                map.selectNull();
+            });
+            var clickCount = 0;
+            
+            //判断起点是否是同一处坐标
+            var lastCoord = null;
+            var curfnum = null;
+            //点击三维场景事件。开始选点开始后，点击三维场景一次为起点，第二次点击为终点
+            map.on("mapClickNode", function (event) {
+                console.log(event);
+
+                if (event.nodeType == 4) {
+                    h = 1;
+                    curfnum = event.floor;
+                    mapCoord = event.hitCoord;
+                }
+                if (event.nodeType == esmap.ESNodeType.MODEL) {
+                    curfnum = event.FloorNum;
+                    h = event.RoomHigh;
+                    mapCoord = event.hitCoord;
+                    curfnum && show(curfnum, mapCoord);
+                }
+
+            });
+
+            show = function (fnum, coord) {
+                if (!navi) return;
+                if (coord != null) {
+                    //第三次点击清除路径，重现设置起点起点
+                    if (clickCount == 2) {
+                        navi.clearAll();
+                        clickCount = 0;
+                        lastCoord = null;
+                    }
+
+                    //第一次点击添加起点
+                    if (clickCount == 0) {
+                        lastCoord = coord;
+                        navi.setStartPoint({
+                            x: coord.x,
+                            y: coord.y,
+                            fnum: fnum,
+                            url: "image/start.png",
+                            height: h,
+                            size: 64,
+                        });
+                    } else if (clickCount == 1) {
+                        //添加终点并画路线
+                        //判断起点和终点是否相同
+                        if (lastCoord.x == coord.x) {
+                            alert("起点和终点不能相同!,请重新选点");
+                            return;
+                        }
+                        navi.setEndPoint({
+                            x: coord.x,
+                            y: coord.y,
+                            fnum: fnum,
+                            url: "image/end.png",
+                            height: h,
+                            size: 64,
+                        });
+
+                        //画导航线
+                        navi.getRouteResult({
+                            drawRoute: true,
+                        })
+                    }
+                    clickCount++;
+                }
+                curfnum = null;
+            };
+        });
+
+        function createNavi() {
+            if (building.naviData.length == 0) {
+                alert("三维场景导航数据信息不存在！");
+                return;
+            }
+            if (!navi) {
+                //初始化导航对象
+                navi = new esmap.ESNavigation({
+                    map: map,
+                    locationMarkerUrl: "image/pointer.png",
+                    locationMarkerSize: 150,
+                    speed: 15,
+                    followAngle: false,
+                    tiltAngle: 80,
+                    scaleLevel: 0,
+                    // 设置导航线的样式
+                    lineStyle: {
+                        color: "#33cc61",
+                        //设置线为导航线样式
+                        lineType: esmap.ESLineType.ESARROW,
+                        lineWidth: 6,
+                        fixedWidth: true,
+                        //设置边线的颜色
+                        godEdgeColor: "#66cc99",
+                        //设置箭头颜色
+                        godArrowColor: "#333366",
+                    },
+                });
+            }
+        }
+
+        function clearNavi() {
+            if (navi) navi.clearAll();
+        }
+    </script>
+</body>
+
+</html>
